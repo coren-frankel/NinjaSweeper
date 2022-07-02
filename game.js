@@ -204,7 +204,7 @@ console.log("%c" + "GOOD LUCK THIS IS A CHALLENGE!", style);
 dojoDiv.innerHTML = render(theDojo);
 setTimeout(function () {
     // alert('Welcome to DojoSweeper! Look out for Ninjas! Use the numbers uncovered by clicking the boxes to steer clear. The number represents the amount of ninjas adjacent to the box clicked. Right click to mark the boxes you suspect to hide Ninjas!');
-    alert('Welcome to DojoSweeper!\r\nInstructions: Numbers under boxes are ninjas adjacent to that box. Right click to throw shuriken at the Ninjas, and steer clear. Try to uncover all the bushes that the ninjas aren\'t hiding under. Good Luck!')
+    alert('Welcome to NinjaSweeper!\r\nInstructions: Numbers under boxes are ninjas adjacent to that box. Right click to throw shuriken at the Ninjas, and steer clear. Try to uncover all the bushes that the ninjas aren\'t hiding under. Good Luck!')
 },
     0.5 * 1000)
 // shows the dojo for debugging purposes
