@@ -8,11 +8,14 @@
 }
 body {
     background-color: slategrey;
+    background-image: url('assets/forest.jpg');
+    background-size:cover;
 }   
 h2 {
     text-align: center;
     margin: 20px 0;
     color: yellow;
+    -webkit-text-stroke: 1px black
 }
     
 #the-dojo {
