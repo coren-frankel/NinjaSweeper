@@ -74,3 +74,12 @@ h4 {
     background-color: black;
     color: crimson;
 }
+a {
+    background-color: black;
+    /* margin: auto; */
+    font-size: 50%;
+    text-decoration: none;
+    color: ghostwhite;
+    -webkit-text-stroke: .1px slategrey;
+    position: relative;
+}
