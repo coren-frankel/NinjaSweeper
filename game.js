@@ -36,8 +36,8 @@ function render(theDojo) {
     }
     return result;
 }
-//        this function tells us how many ninjas are hiding under the adjacent (all sides and corners) squares.
-//        Use i and j as the indexes to check theDojo.
+//this function tells us how many ninjas are hiding under the adjacent (all sides and corners) squares.
+//Use i and j as the indexes to check theDojo.
 function howMany(i, j, element) {
     var adjacent = 0;
     if (theDojo[i][j] == 0) {
@@ -141,7 +141,10 @@ function howMany(i, j, element) {
         }
         element.classList.toggle("active");
         element.classList.remove("bush");
-        element.innerText = adjacent;
+        if (adjacent == 0){
+            element.innerText = ""
+        } else
+            element.innerText = adjacent;
         theDojo[i][j] = adjacent
         gameClock++;
         console.log(theDojo[i][j])
@@ -204,7 +207,7 @@ console.log("%c" + "GOOD LUCK THIS IS A CHALLENGE!", style);
 dojoDiv.innerHTML = render(theDojo);
 setTimeout(function () {
     // alert('Welcome to DojoSweeper! Look out for Ninjas! Use the numbers uncovered by clicking the boxes to steer clear. The number represents the amount of ninjas adjacent to the box clicked. Right click to mark the boxes you suspect to hide Ninjas!');
-    alert('Welcome to NinjaSweeper!\r\nInstructions: Numbers under boxes are ninjas adjacent to that box. Right click to throw shuriken at the Ninjas, and steer clear. Try to uncover all the bushes that the ninjas aren\'t hiding under. Good Luck!')
+    alert('Welcome to NinjaSweeper!\r\nInstructions: Numbers under a bush square are the amount of ninjas adjacent to that square. Right click to throw shuriken at the Ninjas, and steer clear of their positions. Try to uncover all the bushes that the ninjas aren\'t hiding under. Good Luck!')
 },
     0.5 * 1000)
 // shows the dojo for debugging purposes
