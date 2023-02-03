@@ -139,19 +139,22 @@ function howMany(i, j, element) {
                 adjacent++;
             }
         }
+        gameClock++;
+        console.log(gameClock)
         element.classList.toggle("active");
         element.classList.remove("bush");
         if (adjacent == 0){
             element.innerText = ""
-            howMany(i+1,j+1,theDojo)
-        } else
+            // return howMany(i+1,j+1,theDojo[i+1][j+1])
+        } else {
             element.innerText = adjacent;
+        }
         theDojo[i][j] = adjacent
-        gameClock++;
-        console.log(theDojo[i][j])
         if (gameClock == 90) {//Game clock tracks non-ninja squares uncovered
+            console.log("Congratulations! You're safe, for now.")
             endgame.style.display= 'flex';
             endgame.innerHTML = (`<div><h4>Game Over!</h4>You evaded the ninjas, and will live to see another day! You take a Ninja's half-eaten sandwich and chomp peacefully into the Sunset.<div>`)
+            endgame.style.color = 'blue';
             endgame.innerHTML += (`<button id="restart" onclick="location.reload()">restart</button>`);
         }
     } else if (theDojo[i][j] == 'ninja') {
@@ -179,25 +182,18 @@ function howMany(i, j, element) {
         } else if (deliver == 1) {
             endgame.innerHTML = (`<div>It appears that you\'re up-wind, because they just smelled you. The trees around you rustle  as the ninja swarm.<h4>Game Over!</h4><div>`)
         } else if (deliver == 2) {
-            endgame.innerHTML = (`<div>I think that smiley bush back there just sneezed. The Ninja Assasins approach before you can get away from the bush.<h4>Game Over!</h4><div>`)
+            endgame.innerHTML = (`<div>**Achoo** That smiling bush back there just sneezed. The ninja assasins hone in before you can get away from the bush.<h4>Game Over!</h4><div>`)
         }
         // endgame.innerHTML = (`<div><h4>Game Over!</h4>The Ninja Assasins have found you!<div>`)
-        endgame.innerHTML += (`<button id="restart" onclick="location.reload()">restart</button>`);
+        endgame.innerHTML += (`<button id="restart" onclick="location.reload()">Restart</button>`);
         endgame.style.display= 'flex';
     }
 }
-//To-Do: Work out toggle to unflag
+// Flag or Shuriken fn: right-click to toggle a shuriken on a square
 function flag(element) {
-    // element.style.backgroundImage = "url('assets/star.png')";
-    // element.style.backgroundSize = "contain";
     element.classList.toggle("shuriken")
     return false;
 }
-
-// BONUS CHALLENGES
-// 1. draw the number onto the button instead of alerting it
-// 2. at the start randomly place 10 ninjas into theDojo with at most 1 on each spot
-// 3. if you click on a ninja you must restart the game 
 //    dojoDiv.innerHTML = `<button onclick="location.reload()">restart</button>`;
 
 // start the game
@@ -208,10 +204,9 @@ console.log("%c" + "GOOD LUCK THIS IS A CHALLENGE!", style);
 
 // adds the rows of buttons into <div id="the-dojo"></div> 
 dojoDiv.innerHTML = render(theDojo);
-setTimeout(function () {
-    // alert('Welcome to DojoSweeper! Look out for Ninjas! Use the numbers uncovered by clicking the boxes to steer clear. The number represents the amount of ninjas adjacent to the box clicked. Right click to mark the boxes you suspect to hide Ninjas!');
-    alert('Welcome to NinjaSweeper!\r\nInstructions: Numbers under a bush square are the amount of ninjas adjacent to that square. Right click to throw shuriken at the Ninjas, and steer clear of their positions. Try to uncover all the bushes that the ninjas aren\'t hiding under. Good Luck!')
-},
-    0.5 * 1000)
-// shows the dojo for debugging purposes
-console.table(theDojo);
+// setTimeout(function () {
+//     alert('Welcome to NinjaSweeper!\r\nInstructions: Numbers under a bush square are the amount of ninjas adjacent to that square. Right click to throw shuriken at the Ninjas, and steer clear of their positions. Try to uncover all the bushes that the ninjas aren\'t hiding under. Good Luck!')
+// },
+//     0.5 * 1000)
+// Uncomment below to display the hidden values in console on load ya cheater:
+// console.table(theDojo);

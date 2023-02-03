@@ -9,3 +9,8 @@
 * Conditionally rendered emojis to replicate OG Minesweeper "Sunglasses Guy"
 * Render the shuriken "flagged" squares unclickable while the shuriken is there
 * Upon losing the game, reveal all ninjas
+
+>>>Checked off the list:
++ Make flag/shuriken function a toggle, so user can remove a shuriken if needed
++ Render squares with no adjacent ninjas blank
++ 
