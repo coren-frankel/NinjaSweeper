@@ -1,43 +1,43 @@
-var theDojo = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
+// 2D Array Gameboard rows, columns, and array initializer
+const rows = 10, cols = 10;
+const theDojo = Array.from({ length: rows }, () => Array.from({ length: cols }, () => false));
+// Div containing the gameboard
 var dojoDiv = document.querySelector("#the-dojo");
+// Container for the gameover message
 var endgame = document.querySelector('#gameover');
-// var endgame = document.createElement('div');
-// endgame.classList.add('gameover');
-var x;
-var y;
+// gameClock tracks how many squares are exposed/flagged to determine if the game is over.
 var gameClock = 0;
-// Creates the rows of buttons for this game
+// Renders all rows of theDojo as cute lil bushes with the howMany() function for flagging or uncovering
 function render(theDojo) {
+    // x and y will represent 10 random places on the board
+    var x, y;
     var result = "";
     for (var i = 0; i < theDojo.length; i++) {
         for (var j = 0; j < theDojo[i].length; j++) {
+            // each square becomes a button with the bush
+            // onclick triggers the howMany fn
+            // right click "flags" the square with a shuriken
             result += `<button class="tatami bush" onclick="howMany(${i}, ${j}, this)" 
             oncontextmenu="flag(this);return false;"></button>`;
         }
     }
+    // loop to create 10 ninjas assigned to random squares
     for (var ninja = 1; ninja <= 10; ninja++) {
         x = Math.floor(Math.random() * 10);
         y = Math.floor(Math.random() * 10);
+        // if x and y randomly match a previous ninja square, try again
         if (theDojo[x][y] == 'ninja') {
             ninja--;
-        }
-        if (theDojo[x][y] == 0) {
+        // otherwise, place a ninja
+        } else {
             theDojo[x][y] = 'ninja';
         }
     }
     return result;
 }
-//this function tells us how many ninjas are hiding under the adjacent (all sides and corners) squares.
-//Use i and j as the indexes to check theDojo.
+// This function tells us how many ninjas are hiding 
+// under the adjacent (all sides and corners) squares.
+// Use i and j as the indexes to check theDojo.
 function howMany(i, j, element) {
     var adjacent = 0;
     if (theDojo[i][j] == 0) {
@@ -143,6 +143,7 @@ function howMany(i, j, element) {
         element.classList.remove("bush");
         if (adjacent == 0){
             element.innerText = ""
+            howMany(i+1,j+1,theDojo)
         } else
             element.innerText = adjacent;
         theDojo[i][j] = adjacent
@@ -185,9 +186,11 @@ function howMany(i, j, element) {
         endgame.style.display= 'flex';
     }
 }
+//To-Do: Work out toggle to unflag
 function flag(element) {
-    element.style.backgroundImage = "url('assets/star.png')";
-    element.style.backgroundSize = "contain";
+    // element.style.backgroundImage = "url('assets/star.png')";
+    // element.style.backgroundSize = "contain";
+    element.classList.toggle("shuriken")
     return false;
 }
 

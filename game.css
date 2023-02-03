@@ -39,11 +39,13 @@ h2 {
     height: 300px;
     position:relative;
     top: -310px;
-    font-size: 120%;
-    opacity: 85%;
-    color: tan;
-    -webkit-text-stroke: 1px ghostwhite;
-    -moz-text-stroke: 1px ghostwhite;
+    font-size: 125%;
+    font-weight: 500;
+    opacity: 90%;
+    color: red;
+    text-stroke: 1px maroon;
+    -webkit-text-stroke: 1px maroon;
+    -moz-text-stroke: 1px maroon;
     font-weight: 900;
 }
 h4 {
@@ -70,6 +72,11 @@ h4 {
     border-right: 2px solid #ccc;
     border-bottom: 2px solid #ccc;
     background-color: white;
+}
+
+.shuriken {
+    background-image: url('assets/star.png');
+    background-size: contain;
 }
 
 #restart {
