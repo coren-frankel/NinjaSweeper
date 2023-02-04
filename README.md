@@ -14,3 +14,4 @@
 + Upon losing the game, reveal all ninjas
 + Clicking on a non-ninja-adjacent square recursively clears all adjacents
 + Render the shuriken "flagged" squares unclickable while the shuriken is there
++ Make Owen Wilson say "wow" everytime the user highlights my name!

@@ -1,3 +1,5 @@
+// Here's a big fat JS file for a Minesweeper game!
+// Author: Coren Frankel 2022/23
 // 2D Array Gameboard rows, columns, and array initializer
 const rows = 10, cols = 10;
 const theDojo = Array.from({ length: rows }, () => Array.from({ length: cols }, () => false));
@@ -245,9 +247,9 @@ function clearBush(i, j, element) {
             //Win message! Game OVER!
             console.log("Congratulations! You're safe, for now.")
             endgame.style.display = 'flex';
-            endgame.innerHTML = (`<div><h4>Game Over!</h4<br><br><br>You evaded the ninjas, and will live to see another day!<br><br> You find a discarded sandwich and chomp cheerfully into the Sunset!<div>`)
+            endgame.innerHTML = (`<div class="bye"><h3>Game Over!</h3><p>You evaded the ninjas, and will live to see another day!</p><p>You find a discarded sandwich and chomp cheerfully into the Sunset!</p><p>🥪🌅😌</p><div>`)
             endgame.style.color = 'violet';
-            endgame.innerHTML += (`<button id="restart" onclick="location.reload()">Restart</button>`);
+            endgame.innerHTML += (`<button id="restart" onclick="location.reload()">Play Again?</button>`);
         }
     // If a ninja is on the square clicked
     } else if (theDojo[i][j] === true) {
@@ -265,7 +267,7 @@ function clearBush(i, j, element) {
         
         endgame.style.display= 'flex';
         // Random 'loser' message from list of 3
-        const loser = [`<div>You sneak up on a Ninja resting and eating a sandwich.<br><br> A twig snaps beneath your toes and you\'re instantly spotted.<br><br><h3>Game Over!</h3>`, `<div>It seems that you\'re up-wind, because they just smelled you.<br><br> The trees around you rustle as the ninja swarm!<br><br><h3>Game Over!</h3><div>`, `<div>**Achoo**<br>That smiling bush back there just sneezed.<br><br> The ninja assasins hone in before you can get away from the bush! <br><br><h3>Game Over!</h3><div>`]
+        const loser = [`<div class="bye"><p>You sneak up on a Ninja resting and eating a sandwich.</p><p>A twig snaps beneath your toes and you\'re instantly spotted.</p><h3>Game Over!</h3>`, `<div class="bye"><p>It seems that you\'re up-wind, because they just smelled you.</p><p>The trees around you rustle as the ninja swarm!</p><h3>Game Over!</h3><div>`, `<div class="bye"><p>**Achoo!**</p><p>That smiling bush back there just sneezed.</p><p>The ninja assasins hone in before you can get away from the bush!</p><h3>Game Over!</h3><div>`]
         var deliver = Math.floor(Math.random()*3);
         endgame.innerHTML = (loser[deliver])
         // Add Restart button to the end of the message
@@ -286,6 +288,13 @@ function flag(element) {
 
 dojoDiv.innerHTML = render(theDojo);
 
+wowList = ['wowc.mp3','wowd.mp3','wowf.mp3','wowh.mp3','wowi.mp3','wowl.mp3','wown.mp3','wowq.mp3','wowr.mp3','wows.mp3','wowy.mp3','wowz.mp3']
+const wow = () => {
+    let rand = Math.floor(Math.random()*wowList.length)
+    var audio = new Audio(wowList[rand]);
+    audio.loop = false;
+    audio.play(); 
+}
 //Append instructions elsewhere -- alert() does not deliver tastefully
 // setTimeout(function () {
     //     alert('Welcome to NinjaSweeper!\r\nInstructions: Numbers under a bush square are the amount of ninjas adjacent to that square. Right click to throw shuriken at the Ninjas, and steer clear of their positions. Try to uncover all the bushes that the ninjas aren\'t hiding under. Good Luck!')

@@ -9,8 +9,7 @@
 body {
     background-color: slategrey;
     background-image: url('assets/forest.jpg');
-    background-size:100%;
-    /* background-repeat: no-repeat; */
+    background-size: 100%;
 }   
 #the-dojo {
     width: 320px;
@@ -41,7 +40,6 @@ body {
     background-color: rgba(0,0,0,.7);
     top: -320px;
     font-size: 120%;
-    font-weight: 500;
     opacity: 90%;
     color: red;
     text-stroke: 1px maroon;
@@ -57,6 +55,7 @@ body {
     border-right: 1px solid saddlebrown;
     border-bottom: 1px solid saddlebrown;
     color:black;
+    text-stroke: 1% white;
     -webkit-text-stroke: 1% white;
     -moz-text-stroke: 1% white;
 }
@@ -84,23 +83,34 @@ body {
     background-color: black;
     color: crimson;
 }
-div a {
+.bye {
     display: flex;
-    justify-content: center;
-    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+#github:hover {
+    font-size: 2.5em;
+}
+#github {
+    position: relative;
+    padding: 25px;
+}
+div a,
+#github {
+    display: flex;
     width: fit-content;
-    margin: 5% auto;
-    /* display: flex; */
-    /* justify-content: center; */
-    /* width: 21%; */
-    /* position: relative; */
-    /* bottom: 2%; */
-    /* left: 40%; */
+    margin: auto;
 }
 a {
     background-color: black;
-    margin: auto;
     font-size: 50%;
     text-decoration: none;
     color: cyan;
+}
+cite {
+    margin: 0;
+}
+h3 {
+    margin: auto;
 }
