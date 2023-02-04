@@ -275,7 +275,24 @@ function clearBush(i, j, element) {
         play(sound[deliver])
         endgame.style.display= "flex";
         // Random 'loser' message from list of 3
-        const loser = [`<div class="bye"><p>You sneak up on a Ninja resting and eating a sandwich.</p><p>A twig snaps beneath your toes and you\'re instantly spotted.</p><h3>Game Over!</h3>`, `<div class="bye"><p>It seems that you\'re up-wind, because they just smelled you.</p><p>The trees around you rustle as the ninja swarm!</p><h3>Game Over!</h3><div>`, `<div class="bye"><p>**Achoo!**</p><p>That smiling bush back there just sneezed.</p><p>The ninja assasins hone in before you can get flee!</p><h3>Game Over!</h3><div>`]
+        const loser = [
+            `<div class="bye">
+                <p>You sneak up on a Ninja resting and eating a sandwich.</p>
+                <p>A twig snaps beneath your toes and you\'re instantly spotted.</p>
+                <h3>Game Over!</h3>
+            </div>`, 
+            `<div class="bye">
+                <p>It seems that you\'re up-wind, because they just smelled you.</p>
+                <p>The trees around you rustle as the ninja swarm!</p>
+                <h3>Game Over!</h3>
+            <div>`, 
+            `<div class="bye">
+            <p>**Achoo!**</p>
+            <p>That smiling bush back there just sneezed.</p>
+            <p>The ninja assasins hone in before you can get flee!</p>
+            <h3>Game Over!</h3>
+            <div>`
+        ]
         endgame.innerHTML = (loser[deliver])
         // Add Restart button to the end of the message
         endgame.innerHTML += (`<button id="restart" onclick="location.reload()">Restart</button>`);
@@ -306,13 +323,30 @@ const play = (mp3) => {
     audio.loop = false;
     audio.play();
 }
-//Append instructions elsewhere -- alert() does not deliver tastefully
-// setTimeout(function () {
-    //     alert('Welcome to NinjaSweeper!\r\nInstructions: Numbers under a bush square are the amount of ninjas adjacent to that square. Right click to throw shuriken at the Ninjas, and steer clear of their positions. Try to uncover all the bushes that the ninjas aren\'t hiding under. Good Luck!')
-    // },
-    //     0.5 * 1000)
-    
-    
+//Instructions hover on game title function:
+const showInstructions = () => {
+    instr = document.querySelector("#instr");
+    title = document.querySelector("#title")
+    const displayInstructions = () => {
+        instr.style.display="block"
+        instr.innerHTML = "<h3>Welcome to Ninja Sweeper!</h3>\
+            <p>How to Play:</p> \
+            <p>Click or press the lil bushsters to clear the board. \
+            Right-click or long press on bushels to place shuriken or \"flags\" on suspected ninja locations. \
+            Numbers on a square indicate how many ninjas are adjacent. \
+            Try to uncover all the safe positions without ninjas to win!.</p>\
+            <p>Good Luck!</p>"
+    }
+    const disappear = () => {
+        instr.style.display="none"
+    }
+    //On hover, display
+    title.addEventListener("mouseenter",displayInstructions)
+    //On exit, hide
+    title.addEventListener("mouseleave",disappear)
+}
+showInstructions()
+
     // message to greet a clever developers
     var style = "color:cyan;font-size:1.5rem;font-weight:bold;";
     console.log("%c" + "What's this?", style);
