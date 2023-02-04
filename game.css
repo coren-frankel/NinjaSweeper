@@ -28,18 +28,19 @@ h2 {
 }
 
 #gameover {
-    /* margin: auto auto; */
+    padding: 5px;
+    margin: auto;
     display: none;
     flex-direction: column;
     align-items:center;
     justify-content: space-between;
-    margin: 0 auto;
     text-align: center;
     width: 310px;
-    height: 300px;
-    position:relative;
-    top: -310px;
-    font-size: 125%;
+    height: 310px;
+    position: relative;
+    background-color: rgba(0,0,0,.7);
+    top: -320px;
+    font-size: 130%;
     font-weight: 500;
     opacity: 90%;
     color: red;
@@ -48,9 +49,6 @@ h2 {
     -moz-text-stroke: 1px maroon;
     font-weight: 900;
 }
-h4 {
-    font-size: 150%;
-}  
 .tatami {
     background-color: forestgreen;
     height: 32px;
