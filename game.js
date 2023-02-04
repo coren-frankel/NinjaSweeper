@@ -41,11 +41,19 @@ function render(theDojo) {
 // under the adjacent (all sides and corners) squares.
 // Use i and j as the indexes to check theDojo.
 function clearBush(i, j, element) {
+    // If a shuriken is applied
+    if (element.classList.contains('shuriken')) {
+    // don't allow clearBush() to continue
+        return null
+    }
     var adjacent = 0;
     if (theDojo[i][j] == 0) {
+        // If the box has already been cleared
         if (uncovered.includes(`${i}${j}`)) {
+        // stop clearBush() from executing further
             return null
         } else {
+        // otherwise, add the current square to the list of exposed squares
             uncovered.push(`${i}${j}`)
         }
         // Top Row
@@ -234,19 +242,28 @@ function clearBush(i, j, element) {
         if (gameClock == 90) {//"gameClock" tracks non-ninja squares uncovered
             console.log("Congratulations! You're safe, for now.")
             endgame.style.display = 'flex';
-            endgame.innerHTML = (`<div><h4>Game Over!</h4>You evaded the ninjas, and will live to see another day! You take a Ninja's discarded sandwich and chomp peacefully into the Sunset!<div>`)
-            endgame.style.fontSize = "120%";
-            endgame.style.color = 'blue';
+            endgame.innerHTML = (`<div><h4>Game Over!</h4<br><br><br>You evaded the ninjas, and will live to see another day!<br><br> You find a discarded sandwich and chomp cheerfully into the Sunset!<div>`)
+            // endgame.style.fontSize = "110%";
+            endgame.style.color = 'violet';
             endgame.innerHTML += (`<button id="restart" onclick="location.reload()">Restart</button>`);
         }
     // If a ninja is on the square clicked
     } else if (theDojo[i][j] == 'ninja') {
-        // Apply Ninja gif to square
-        element.style.backgroundImage = "url('assets/ninja.gif')";
-        element.style.backgroundSize = "contain";
+        // Reveal all other ninjas
+        for(let p = 0; p < 10; p++){
+            for(let q = 0; q <10; q++){
+                if (theDojo[p][q] == 'ninja'){
+                    let nin = document.querySelector(`#sq-${p}${q}`)
+                    // Apply Ninja gif to square
+                    nin.style.backgroundImage = "url('assets/ninja.gif')";
+                    nin.style.backgroundSize = "contain";
+                }
+            }
+        }
+        
         endgame.style.display= 'flex';
         // Random 'loser' message from list of 3
-        const loser = [`<div>You sneak up on a Ninja resting and eating a sandwich. A twig snaps beneath your toes and you\'re instantly spotted.<h3>Game Over!</h3>`, `<div>It seems that you\'re up-wind, because they just smelled you. The trees around you rustle as the ninja swarm!<h3>Game Over!</h3><div>`, `<div>**Achoo** That smiling bush back there just sneezed. The ninja assasins hone in before you can get away from the bush! <h3>Game Over!</h3><div>`]
+        const loser = [`<div>You sneak up on a Ninja resting and eating a sandwich.<br><br> A twig snaps beneath your toes and you\'re instantly spotted.<br><br><h3>Game Over!</h3>`, `<div>It seems that you\'re up-wind, because they just smelled you.<br><br> The trees around you rustle as the ninja swarm!<br><br><h3>Game Over!</h3><div>`, `<div>**Achoo**<br>That smiling bush back there just sneezed.<br><br> The ninja assasins hone in before you can get away from the bush! <br><br><h3>Game Over!</h3><div>`]
         var deliver = Math.floor(Math.random()*3);
         endgame.innerHTML = (loser[deliver])
         // Add Restart button to the end of the message
@@ -260,16 +277,20 @@ function flag(element) {
     return false;
 }
 
-// start the game
-// message to greet a user of the game
-var style = "color:cyan;font-size:1.5rem;font-weight:bold;";
-console.log("%c" + "IF YOU ARE A DOJO STUDENT...", style);
-console.log("%c" + "GOOD LUCK THIS IS A CHALLENGE!", style);
 
 dojoDiv.innerHTML = render(theDojo);
+
+//Append instructions elsewhere -- alert() does not deliver tastefully
 // setTimeout(function () {
-//     alert('Welcome to NinjaSweeper!\r\nInstructions: Numbers under a bush square are the amount of ninjas adjacent to that square. Right click to throw shuriken at the Ninjas, and steer clear of their positions. Try to uncover all the bushes that the ninjas aren\'t hiding under. Good Luck!')
-// },
-//     0.5 * 1000)
-// Uncomment below to display the hidden values in console on load ya cheater:
-// console.table(theDojo);
+    //     alert('Welcome to NinjaSweeper!\r\nInstructions: Numbers under a bush square are the amount of ninjas adjacent to that square. Right click to throw shuriken at the Ninjas, and steer clear of their positions. Try to uncover all the bushes that the ninjas aren\'t hiding under. Good Luck!')
+    // },
+    //     0.5 * 1000)
+    
+    
+    
+    // message to greet a clever developers
+    var style = "color:cyan;font-size:1.5rem;font-weight:bold;";
+    console.log("%c" + "What's this?", style);
+    console.log("%c" + "You've discovered a strange map along the edge of the bush.", style);
+    console.table(theDojo);
+    console.log("%c" + "Perhaps it holds ninja secrets!", style);

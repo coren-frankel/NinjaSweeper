@@ -13,4 +13,4 @@
 >>>Checked off the list:
 + Make flag/shuriken function a toggle, so user can remove a shuriken if needed
 + Render squares with no adjacent ninjas blank
-+ 
++ Clicking on a non-ninja-adjacent square recursively clears all adjacents
