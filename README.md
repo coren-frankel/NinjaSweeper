@@ -1,16 +1,16 @@
 # NinjaSweeper
 
->This is a build upon an algorithm exercise from the Coding Dojo's web fundamental course & an ode to the classic Minesweeper game made with simple HTML, CSS, & Javascript. It is a work in progress, and could be refined, but was a light build to commemorate completing the web fundamentals course before plunging into Python stack. Please enjoy evading the ninja's who seek to corner and assasinate you as you dig through the bush. Live Demo [_here_](https://coren-frankel.github.io/NinjaSweeper/)
+>This is a build upon an algorithm exercise from the Coding Dojo's web fundamental course & an ode to the classic Minesweeper game made with vanilla HTML, CSS, & Javascript. As a pet project, I am making modest adjustments to the game to improve upon it over time. Please enjoy evading the ninja's who seek to corner and assasinate you as you dig through the bush. Live Demo [_here_](https://coren-frankel.github.io/NinjaSweeper/)
 
 >>>Things I'd like to add in the future:
 * Animation of leaves or bush or ninja upon clicking on a ninja square
 * Difficulty settings: Grid size change & ninja frequency change 
-* Sound? Music?
+* Sounds? Music?
 * Conditionally rendered emojis to replicate OG Minesweeper "Sunglasses Guy"
-* Render the shuriken "flagged" squares unclickable while the shuriken is there
-* Upon losing the game, reveal all ninjas
 
->>>Checked off the list:
+>>>Recently Checked off the list:
 + Make flag/shuriken function a toggle, so user can remove a shuriken if needed
 + Render squares with no adjacent ninjas blank
++ Upon losing the game, reveal all ninjas
 + Clicking on a non-ninja-adjacent square recursively clears all adjacents
++ Render the shuriken "flagged" squares unclickable while the shuriken is there
