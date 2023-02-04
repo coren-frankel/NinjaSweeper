@@ -6,7 +6,7 @@ const theDojo = Array.from({ length: rows }, () => Array.from({ length: cols }, 
 // Div containing the gameboard
 var dojoDiv = document.querySelector("#the-dojo");
 // Container for the gameover message
-var endgame = document.querySelector('.gameover');
+var endgame = document.querySelector(".gameover");
 // uncovered list of squares exposed
 var uncovered = []
 // Renders all rows of theDojo as cute lil bushes with the clearBush() function for flagging or uncovering
@@ -46,7 +46,7 @@ function clearBush(i, j, element) {
 // i and j are the indexes to check theDojo 2D Array values
 // element refers to the dom element selected
     // If a shuriken is currently applied
-    if (element.classList.contains('shuriken')) {
+    if (element.classList.contains("shuriken")) {
     // don't allow clearBush() to continue
         return null
     }
@@ -246,9 +246,10 @@ function clearBush(i, j, element) {
         if (uncovered.length == 90) {
             //Win message! Game OVER!
             console.log("Congratulations! You're safe, for now.")
-            endgame.style.display = 'flex';
-            endgame.innerHTML = (`<div class="bye"><h3>Game Over!</h3><p>You evaded the ninjas, and will live to see another day!</p><p>You find a discarded sandwich and chomp cheerfully into the Sunset!</p><p>🥪🌅😌</p><div>`)
-            endgame.style.color = 'violet';
+            endgame.style.display = "flex";
+            endgame.innerHTML = (`<div class="bye"><h3>Game Over!</h3><p>You evaded the ninjas, and will live to see another day!</p><p>You find a discarded sandwich and chomp cheerfully into the Sunset!</p><p>Vaya con Dios, soldier...</p><div>`)
+            endgame.style.color = "violet";
+            play("chomp.mp3")
             endgame.innerHTML += (`<button id="restart" onclick="location.reload()">Play Again?</button>`);
         }
     // If a ninja is on the square clicked
@@ -257,28 +258,34 @@ function clearBush(i, j, element) {
         for(let p = 0; p < 10; p++){
             for(let q = 0; q <10; q++){
                 if (theDojo[p][q] === true){
+                    //array of ninja PNG differentiation
+                    let ninjas = ["","(1)","(2)"]
+                    //random number between 0-2
+                    let rand = Math.floor(Math.random()*3)
                     let nin = document.querySelector(`#sq-${p}${q}`)
-                    // Apply Ninja gif to square
-                    nin.style.backgroundImage = "url('assets/ninja.gif')";
-                    nin.style.backgroundSize = "contain";
+                    // Apply randomized ninja to square
+                    nin.style.backgroundImage = `url("assets/ninja${ninjas[rand]}.png")`;
+                    nin.style.backgroundColor = "crimson";
                 }
             }
         }
         
-        endgame.style.display= 'flex';
-        // Random 'loser' message from list of 3
-        const loser = [`<div class="bye"><p>You sneak up on a Ninja resting and eating a sandwich.</p><p>A twig snaps beneath your toes and you\'re instantly spotted.</p><h3>Game Over!</h3>`, `<div class="bye"><p>It seems that you\'re up-wind, because they just smelled you.</p><p>The trees around you rustle as the ninja swarm!</p><h3>Game Over!</h3><div>`, `<div class="bye"><p>**Achoo!**</p><p>That smiling bush back there just sneezed.</p><p>The ninja assasins hone in before you can get away from the bush!</p><h3>Game Over!</h3><div>`]
         var deliver = Math.floor(Math.random()*3);
+        const sound = ["twig.mp3","sniff.mp3","sneeze.mp3"]
+        play(sound[deliver])
+        endgame.style.display= "flex";
+        // Random 'loser' message from list of 3
+        const loser = [`<div class="bye"><p>You sneak up on a Ninja resting and eating a sandwich.</p><p>A twig snaps beneath your toes and you\'re instantly spotted.</p><h3>Game Over!</h3>`, `<div class="bye"><p>It seems that you\'re up-wind, because they just smelled you.</p><p>The trees around you rustle as the ninja swarm!</p><h3>Game Over!</h3><div>`, `<div class="bye"><p>**Achoo!**</p><p>That smiling bush back there just sneezed.</p><p>The ninja assasins hone in before you can get flee!</p><h3>Game Over!</h3><div>`]
         endgame.innerHTML = (loser[deliver])
         // Add Restart button to the end of the message
         endgame.innerHTML += (`<button id="restart" onclick="location.reload()">Restart</button>`);
-        endgame.style.display= 'flex';
+        endgame.style.display= "flex";
     }
 }
 // Flag or Shuriken fn: right-click to toggle a shuriken on a square
 function flag(element) {
     // If it's a bush
-    if (element.classList.contains('bush')){
+    if (element.classList.contains("bush")){
         // Allow Shuriken-flag
         element.classList.toggle("shuriken")
     }
@@ -288,19 +295,22 @@ function flag(element) {
 
 dojoDiv.innerHTML = render(theDojo);
 
-wowList = ['wowc.mp3','wowd.mp3','wowf.mp3','wowh.mp3','wowi.mp3','wowl.mp3','wown.mp3','wowq.mp3','wowr.mp3','wows.mp3','wowy.mp3','wowz.mp3']
+
+wowList = ["wowc.mp3","wowd.mp3","wowf.mp3","wowh.mp3","wowi.mp3","wowl.mp3","wown.mp3","wowq.mp3","wowr.mp3","wows.mp3","wowy.mp3","wowz.mp3"]
 const wow = () => {
     let rand = Math.floor(Math.random()*wowList.length)
-    var audio = new Audio(wowList[rand]);
+    play(wowList[rand])
+}
+const play = (mp3) => {
+    var audio = new Audio("./assets/"+mp3);
     audio.loop = false;
-    audio.play(); 
+    audio.play();
 }
 //Append instructions elsewhere -- alert() does not deliver tastefully
 // setTimeout(function () {
     //     alert('Welcome to NinjaSweeper!\r\nInstructions: Numbers under a bush square are the amount of ninjas adjacent to that square. Right click to throw shuriken at the Ninjas, and steer clear of their positions. Try to uncover all the bushes that the ninjas aren\'t hiding under. Good Luck!')
     // },
     //     0.5 * 1000)
-    
     
     
     // message to greet a clever developers

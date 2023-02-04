@@ -77,9 +77,9 @@ body {
 }
 
 #restart {
-    width: 50%;
+    width: 60%;
     height: 2em;
-    border-radius: 15%;
+    border-radius: 50px;
     background-color: black;
     color: crimson;
 }
@@ -96,7 +96,7 @@ body {
     position: relative;
     padding: 25px;
 }
-div a,
+a,
 #github {
     display: flex;
     width: fit-content;
@@ -109,7 +109,9 @@ a {
     color: cyan;
 }
 cite {
-    margin: 0;
+    /* margin: auto; */
+    /* display: flex; */
+    /* flex-direction: column; */
 }
 h3 {
     margin: auto;
