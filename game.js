@@ -37,20 +37,25 @@ function render(theDojo) {
     }
     return result;
 }
-// This function tells us how many ninjas are hiding 
-// under the adjacent (all sides and corners) squares.
-// Use i and j as the indexes to check theDojo.
+// This function checks how many ninjas are hiding 
+// under the adjacent (all sides and corners) squares,
+// and either reveals the number of adjacent ninjas,
+// reveals a ninja and ends the game,
+// or on safe squares will recursively reveal adjacent safe squares.
 function clearBush(i, j, element) {
-    // If a shuriken is applied
+// i and j are the indexes to check theDojo 2D Array values
+// element refers to the dom element selected
+    // If a shuriken is currently applied
     if (element.classList.contains('shuriken')) {
     // don't allow clearBush() to continue
         return null
     }
+    // Adjacent ninjas count initiates at 0
     var adjacent = 0;
     if (theDojo[i][j] == 0) {
         // If the box has already been cleared
         if (uncovered.includes(`${i}${j}`)) {
-        // stop clearBush() from executing further
+        // stop clearBush() from executing
             return null
         } else {
         // otherwise, add the current square to the list of exposed squares
