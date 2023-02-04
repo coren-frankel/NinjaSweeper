@@ -27,7 +27,7 @@ h2 {
     flex-wrap: wrap;
 }
 
-#gameover {
+.gameover {
     padding: 5px;
     margin: auto;
     display: none;

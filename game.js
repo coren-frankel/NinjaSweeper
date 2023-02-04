@@ -4,10 +4,8 @@ const theDojo = Array.from({ length: rows }, () => Array.from({ length: cols }, 
 // Div containing the gameboard
 var dojoDiv = document.querySelector("#the-dojo");
 // Container for the gameover message
-var endgame = document.querySelector('#gameover');
-// gameClock tracks how many squares are exposed/flagged to determine if the game is over.
-var gameClock = 0;
-// uncovered list holds squares exposed
+var endgame = document.querySelector('.gameover');
+// uncovered list of squares exposed
 var uncovered = []
 // Renders all rows of theDojo as cute lil bushes with the clearBush() function for flagging or uncovering
 function render(theDojo) {
@@ -21,18 +19,18 @@ function render(theDojo) {
             oncontextmenu="flag(this);return false;"></button>`;
         }
     }
-    // x and y will comprise 10 random coordinates on the board
     var x, y;
     // loop to create 10 ninjas assigned to random squares
     for (var ninja = 1; ninja <= 10; ninja++) {
+        // x and y will comprise 10 random coordinates on the board
         x = Math.floor(Math.random() * 10);
         y = Math.floor(Math.random() * 10);
         // if x and y randomly match a previous ninja square, try again
-        if (theDojo[x][y] == 'ninja') {
+        if (theDojo[x][y] === true) {
             ninja--;
         // otherwise, place a ninja
         } else {
-            theDojo[x][y] = 'ninja';
+            theDojo[x][y] = true;
         }
     }
     return result;
@@ -52,7 +50,7 @@ function clearBush(i, j, element) {
     }
     // Adjacent ninjas count initiates at 0
     var adjacent = 0;
-    if (theDojo[i][j] == 0) {
+    if (theDojo[i][j] === false) {
         // If the box has already been cleared
         if (uncovered.includes(`${i}${j}`)) {
         // stop clearBush() from executing
@@ -63,110 +61,108 @@ function clearBush(i, j, element) {
         }
         // Top Row
         if (i == 0) {
-            if (theDojo[i][j + 1] === 'ninja') {
+            if (theDojo[i][j + 1] === true) {
                 adjacent++;
             }
-            if (theDojo[i + 1][j + 1] === 'ninja') {
+            if (theDojo[i + 1][j + 1] === true) {
                 adjacent++;
             }
-            if (theDojo[i + 1][j] === 'ninja') {
+            if (theDojo[i + 1][j] === true) {
                 adjacent++;
             }
-            if (theDojo[i][j - 1] === 'ninja') {
+            if (theDojo[i][j - 1] === true) {
                 adjacent++;
             }
-            if (theDojo[i + 1][j - 1] === 'ninja') {
+            if (theDojo[i + 1][j - 1] === true) {
                 adjacent++;
             }
         // Bottom Row
         } else if (i == 9) {
-            if (theDojo[i][j + 1] === 'ninja') {
+            if (theDojo[i][j + 1] === true) {
                 adjacent++;
             }
-            if (theDojo[i][j - 1] === 'ninja') {
+            if (theDojo[i][j - 1] === true) {
                 adjacent++;
             }
-            if (theDojo[i - 1][j + 1] === 'ninja') {
+            if (theDojo[i - 1][j + 1] === true) {
                 adjacent++;
             }
-            if (theDojo[i - 1][j] === 'ninja') {
+            if (theDojo[i - 1][j] === true) {
                 adjacent++;
             }
-            if (theDojo[i - 1][j - 1] === 'ninja') {
+            if (theDojo[i - 1][j - 1] === true) {
                 adjacent++;
             }
         // Corner
         } else if ((i == 0) && (j == 0)) {
-            if (theDojo[i + 1][j] === 'ninja') {
+            if (theDojo[i + 1][j] === true) {
                 adjacent++;
             }
-            if (theDojo[i][j + 1] === 'ninja') {
+            if (theDojo[i][j + 1] === true) {
                 adjacent++;
             }
-            if (theDojo[i + 1][j + 1] === 'ninja') {
+            if (theDojo[i + 1][j + 1] === true) {
                 adjacent++;
             }
         // Corner
         } else if ((i == 0) && (j == 9)) {
-            if (theDojo[i][j - 1] === 'ninja') {
+            if (theDojo[i][j - 1] === true) {
                 adjacent++;
             }
-            if (theDojo[i + 1][j - 1] === 'ninja') {
+            if (theDojo[i + 1][j - 1] === true) {
                 adjacent++;
             }
-            if (theDojo[i + 1][j] === 'ninja') {
+            if (theDojo[i + 1][j] === true) {
                 adjacent++;
             }
         // Corner
         } else if ((i == 9) && (j == 0)) {
-            if (theDojo[i - 1][j] === 'ninja') {
+            if (theDojo[i - 1][j] === true) {
                 adjacent++;
             }
-            if (theDojo[i - 1][j + 1] === 'ninja') {
+            if (theDojo[i - 1][j + 1] === true) {
                 adjacent++;
             }
-            if (theDojo[i][j + 1] === 'ninja') {
+            if (theDojo[i][j + 1] === true) {
                 adjacent++;
             }
         // Corner
         } else if ((i == 9) && (j == 9)) {
-            if (theDojo[i - 1][j] === 'ninja') {
+            if (theDojo[i - 1][j] === true) {
                 adjacent++;
             }
-            if (theDojo[i - 1][j - 1] === 'ninja') {
+            if (theDojo[i - 1][j - 1] === true) {
                 adjacent++;
             }
-            if (theDojo[i][j - 1] === 'ninja') {
+            if (theDojo[i][j - 1] === true) {
                 adjacent++;
             }
         } else {
-            if (theDojo[i + 1][j - 1] === 'ninja') {
+            if (theDojo[i + 1][j - 1] === true) {
                 adjacent++;
             }
-            if (theDojo[i + 1][j + 1] === 'ninja') {
+            if (theDojo[i + 1][j + 1] === true) {
                 adjacent++;
             }
-            if (theDojo[i + 1][j] === 'ninja') {
+            if (theDojo[i + 1][j] === true) {
                 adjacent++;
             }
-            if (theDojo[i][j + 1] === 'ninja') {
+            if (theDojo[i][j + 1] === true) {
                 adjacent++;
             }
-            if (theDojo[i][j - 1] === 'ninja') {
+            if (theDojo[i][j - 1] === true) {
                 adjacent++;
             }
-            if (theDojo[i - 1][j + 1] === 'ninja') {
+            if (theDojo[i - 1][j + 1] === true) {
                 adjacent++;
             }
-            if (theDojo[i - 1][j] === 'ninja') {
+            if (theDojo[i - 1][j] === true) {
                 adjacent++;
             }
-            if (theDojo[i - 1][j - 1] === 'ninja') {
+            if (theDojo[i - 1][j - 1] === true) {
                 adjacent++;
             }
         }
-        gameClock++;
-        console.log(gameClock)
         element.classList.toggle("active");
         element.classList.remove("bush");
         if (adjacent == 0){
@@ -183,7 +179,7 @@ function clearBush(i, j, element) {
             
             // Top-Left Corner clear
             if (i == 0 && j == 0) {
-                uncovered.includes(`${i+1}${j}`) ? clearBush(i+1,j,down) : ""
+                clearBush(i+1,j,down)
                 clearBush(i,j+1,right)
                 clearBush(i+1,j+1,downRight)
             // Top-Right Corner clear
@@ -244,20 +240,21 @@ function clearBush(i, j, element) {
             element.innerText = adjacent;
         }
         theDojo[i][j] = adjacent
-        if (gameClock == 90) {//"gameClock" tracks non-ninja squares uncovered
+        // When 90 safe squares have been uncovered
+        if (uncovered.length == 90) {
+            //Win message! Game OVER!
             console.log("Congratulations! You're safe, for now.")
             endgame.style.display = 'flex';
             endgame.innerHTML = (`<div><h4>Game Over!</h4<br><br><br>You evaded the ninjas, and will live to see another day!<br><br> You find a discarded sandwich and chomp cheerfully into the Sunset!<div>`)
-            // endgame.style.fontSize = "110%";
             endgame.style.color = 'violet';
             endgame.innerHTML += (`<button id="restart" onclick="location.reload()">Restart</button>`);
         }
     // If a ninja is on the square clicked
-    } else if (theDojo[i][j] == 'ninja') {
+    } else if (theDojo[i][j] === true) {
         // Reveal all other ninjas
         for(let p = 0; p < 10; p++){
             for(let q = 0; q <10; q++){
-                if (theDojo[p][q] == 'ninja'){
+                if (theDojo[p][q] === true){
                     let nin = document.querySelector(`#sq-${p}${q}`)
                     // Apply Ninja gif to square
                     nin.style.backgroundImage = "url('assets/ninja.gif')";
@@ -278,7 +275,11 @@ function clearBush(i, j, element) {
 }
 // Flag or Shuriken fn: right-click to toggle a shuriken on a square
 function flag(element) {
-    element.classList.toggle("shuriken")
+    // If it's a bush
+    if (element.classList.contains('bush')){
+        // Allow Shuriken-flag
+        element.classList.toggle("shuriken")
+    }
     return false;
 }
 
