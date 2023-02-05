@@ -73,6 +73,13 @@ body {
     background-size: contain;
 }
 
+#ex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
 #restart {
     width: 60%;
     height: 2em;
@@ -159,7 +166,7 @@ ul li {
     list-style-type: square;
     line-height: 1.5em;
 }
-#sub {
+.sub {
     list-style-type: circle;
     padding-left: 4em;
 }

@@ -335,12 +335,13 @@ const showInstructions = () => {
         instr.innerHTML = "<h3>Welcome to Ninja Sweeper!</h3>\
             <p>How to Play:</p> \
             <ul>\
-            <li>Click(press) the lil bushsters to clear the board</li>\
-            <li>Right-click(long press) on bushels to place shuriken or \"flags\" on suspected ninja locations</li>\
+            <li>Click(press) the lil bushsters <img src=\"./assets/bush.png\" alt=\"bushster\" class=\"tatami\"> to clear the board</li>\
+            <li>Right-click(long press) on bushels to place shuriken <img src=\"./assets/star.png\" alt=\"shuriken\" class=\"tatami\"> or \"flags\" on suspected ninja locations</li>\
                 <ul>\
-                    <li id=\"sub\">Squares with shuriken placed on them are unclickable</li>\
+                    <li class=\"sub\">Squares with shuriken placed on them are unclickable</li>\
+                    <li class=\"sub\">Right-click(long press) again to remove the shuriken</li>\
                 </ul>\
-            <li>Numbers on a square indicate how many ninjas are surrounding it.</li>\
+            <li>Numbers on a square (i.e. <span class=\"tatami\" id=\"ex\">4</span>) indicate how many ninjas are surrounding it.</li>\
             <li>Deduce and uncover all the unoccupied squares to win!</li>\
             </ul><br>\
             <p>For a more in depth tutorial, click the <span class=\"info\">i</span> icon at the top of the screen.</p>\
@@ -360,6 +361,7 @@ showInstructions()
 const showTutorial = () => {
     //To-Do: 
     //-reveal gif of the starting moves
+    tut = document.createElement('div')
     //-render a description side-bar
     //-accept clicks or spacebar progression
     //-make "x" close button to ditch the tutorial
