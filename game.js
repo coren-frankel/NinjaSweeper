@@ -249,7 +249,7 @@ function clearBush(i, j, element) {
             endgame.style.display = "flex";
             endgame.innerHTML = (`<div class="bye"><h3>Game Over!</h3><p>You evaded the ninjas, and will live to see another day!</p><p>You find a discarded sandwich and chomp cheerfully into the Sunset!</p><p>Vaya con Dios, soldier...</p><div>`)
             endgame.style.color = "violet";
-            play("chomp.mp3")
+            play("chomp.wav")
             endgame.innerHTML += (`<button id="restart" onclick="location.reload()">Play Again?</button>`);
         }
     // If a ninja is on the square clicked
@@ -277,20 +277,22 @@ function clearBush(i, j, element) {
         // Random 'loser' message from list of 3
         const loser = [
             `<div class="bye">
-                <p>You sneak up on a Ninja resting and eating a sandwich.</p>
-                <p>A twig snaps beneath your toes and you\'re instantly spotted.</p>
+                <p>You come up behind a ninja eating a sandwich.</p>
+                <p>A twig snaps beneath your toes.</p>
+                <p>The sandwich falls to the ground.</p>
                 <h3>Game Over!</h3>
             </div>`, 
             `<div class="bye">
-                <p>It seems that you\'re up-wind, because they just smelled you.</p>
+                <p>The breeze changes direction.</p>
+                <p>They've caught your scent.</p>
                 <p>The trees around you rustle as the ninja swarm!</p>
                 <h3>Game Over!</h3>
             <div>`, 
             `<div class="bye">
-            <p>**Achoo!**</p>
-            <p>That smiling bush back there just sneezed.</p>
-            <p>The ninja assasins hone in before you can get flee!</p>
-            <h3>Game Over!</h3>
+                <p>**Achoo!**</p>
+                <p>Did that bush just sneeze?</p>
+                <p>The ninja assasins hone in before you can flee!</p>
+                <h3>Game Over!</h3>
             <div>`
         ]
         endgame.innerHTML = (loser[deliver])
@@ -329,24 +331,39 @@ const showInstructions = () => {
     title = document.querySelector("#title")
     const displayInstructions = () => {
         instr.style.display="block"
+        instr.style.padding="20px"
         instr.innerHTML = "<h3>Welcome to Ninja Sweeper!</h3>\
             <p>How to Play:</p> \
-            <p>Click or press the lil bushsters to clear the board. \
-            Right-click or long press on bushels to place shuriken or \"flags\" on suspected ninja locations. \
-            Numbers on a square indicate how many ninjas are adjacent. \
-            Try to uncover all the safe positions without ninjas to win!.</p>\
-            <p>Good Luck!</p>"
+            <ul>\
+            <li>Click(press) the lil bushsters to clear the board</li>\
+            <li>Right-click(long press) on bushels to place shuriken or \"flags\" on suspected ninja locations</li>\
+                <ul>\
+                    <li id=\"sub\">Squares with shuriken placed on them are unclickable</li>\
+                </ul>\
+            <li>Numbers on a square indicate how many ninjas are surrounding it.</li>\
+            <li>Deduce and uncover all the unoccupied squares to win!</li>\
+            </ul><br>\
+            <p>For a more in depth tutorial, click the <span class=\"info\">i</span> icon at the top of the screen.</p>\
+            <h3><em>Good Luck!</em></h3>"
     }
     const disappear = () => {
         instr.style.display="none"
     }
     //On hover, display
     title.addEventListener("mouseenter",displayInstructions)
+    title.addEventListener("click",displayInstructions)
     //On exit, hide
     title.addEventListener("mouseleave",disappear)
 }
 showInstructions()
 
+const showTutorial = () => {
+    //To-Do: 
+    //-reveal gif of the starting moves
+    //-render a description side-bar
+    //-accept clicks or spacebar progression
+    //-make "x" close button to ditch the tutorial
+}
     // message to greet a clever developers
     var style = "color:cyan;font-size:1.5rem;font-weight:bold;";
     console.log("%c" + "What's this?", style);

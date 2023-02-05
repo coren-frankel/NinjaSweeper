@@ -5,7 +5,7 @@
 >>>Things I'd like to add in the future:
 * Animation of leaves or bush or ninja upon clicking on a ninja square
 * Difficulty settings: Grid size change & ninja frequency change 
-* Sounds? Music?
+* Music?
 * Conditionally rendered emojis to replicate OG Minesweeper "Sunglasses Guy"
 
 >>>Recently Checked off the list:
@@ -14,4 +14,5 @@
 + Upon losing the game, reveal all ninjas
 + Clicking on a non-ninja-adjacent square recursively clears all adjacents
 + Render the shuriken "flagged" squares unclickable while the shuriken is there
+* Sounds? 
 + Make Owen Wilson say "wow" everytime the user highlights my name!
