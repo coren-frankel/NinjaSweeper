@@ -341,10 +341,10 @@ const showInstructions = () => {
                     <li class=\"sub\">Squares with shuriken placed on them are unclickable</li>\
                     <li class=\"sub\">Right-click(long press) again to remove the shuriken</li>\
                 </ul>\
-            <li>Numbers on a square (i.e. <span class=\"tatami\" id=\"ex\">4</span>) indicate how many ninjas are surrounding it.</li>\
-            <li>Deduce and uncover all the unoccupied squares to win!</li>\
+            <li id=\"numbs\"><span>Numbers on a square (i.e.</span><div class=\"tatami\" id=\"ex\">4</div><span>) indicate how many ninjas are surrounding it.</span></li>\
+            <li>Use the numbers to deduce and uncover all the unoccupied squares to win!</li>\
             </ul><br>\
-            <p>For a more in depth tutorial, click the <span class=\"info\">i</span> icon at the top of the screen.</p>\
+            <p>For a more in depth tutorial, find the <span class=\"info\">i</span> button.</p>\
             <h3><em>Good Luck!</em></h3>"
     }
     const disappear = () => {
@@ -358,13 +358,26 @@ const showInstructions = () => {
 }
 showInstructions()
 
+tut = document.querySelector("#tutorialWindow");
 const showTutorial = () => {
     //To-Do: 
     //-reveal gif of the starting moves
-    tut = document.createElement('div')
     //-render a description side-bar
+    tut.innerHTML = "\
+        <div id=\"cap\">\
+            <p>The 1st move is always blind luck...</p>\
+            <p>Click anywhere!</p>\
+            <p>Not every click will reveal enough to use against the ninja.</p>\
+            <p>But once you've cleared some bushes you can get to work!</p>\
+        </div>\
+        <div id=\"tutImage\"></div>\
+        <button class=\"info\" id=\"close\" onclick=\"closeTutorial()\">x</button>\
+    "
     //-accept clicks or spacebar progression
     //-make "x" close button to ditch the tutorial
+}
+const closeTutorial = () => {
+    tut.style.display = "none";
 }
     // message to greet a clever developers
     var style = "color:cyan;font-size:1.5rem;font-weight:bold;";
