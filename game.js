@@ -1,8 +1,11 @@
 // Here's a big fat JS file for a Minesweeper game!
 // Author: Coren Frankel 2022/23
+
+let horde = 10
+
 // 2D Array Gameboard rows, columns, and array initializer
-const rows = 10, cols = 10;
-const theDojo = Array.from({ length: rows }, () => Array.from({ length: cols }, () => false));
+let rows = 10, cols = 10;
+let theDojo = Array.from({ length: rows }, () => Array.from({ length: cols }, () => false));
 // Div containing the gameboard
 var dojoDiv = document.querySelector("#the-dojo");
 // Container for the gameover message
@@ -15,18 +18,16 @@ function render(theDojo) {
     for (var i = 0; i < theDojo.length; i++) {
         for (var j = 0; j < theDojo[i].length; j++) {
             // each square becomes a button with the bush
-            // onclick triggers the clearBush fn
-            // right click "flags" the square with a shuriken
             result += `<button class="tatami bush" id="sq-${i}${j}" onclick="clearBush(${i}, ${j}, this)" 
             oncontextmenu="flag(this);return false;"></button>`;
         }
     }
     var x, y;
-    // loop to create 10 ninjas assigned to random squares
-    for (var ninja = 1; ninja <= 10; ninja++) {
-        // x and y will comprise 10 random coordinates on the board
-        x = Math.floor(Math.random() * 10);
-        y = Math.floor(Math.random() * 10);
+    // loop to create ninjas assigned to random squares
+    for (var ninja = 1; ninja <= horde; ninja++) {
+        // x and y random coordinates
+        x = Math.floor(Math.random() * rows);
+        y = Math.floor(Math.random() * cols);
         // if x and y randomly match a previous ninja square, try again
         if (theDojo[x][y] === true) {
             ninja--;
@@ -79,7 +80,7 @@ function clearBush(i, j, element) {
                 adjacent++;
             }
         // Bottom Row
-        } else if (i == 9) {
+        } else if (i == theDojo.length-1) {
             if (theDojo[i][j + 1] === true) {
                 adjacent++;
             }
@@ -107,7 +108,7 @@ function clearBush(i, j, element) {
                 adjacent++;
             }
         // Corner
-        } else if ((i == 0) && (j == 9)) {
+        } else if ((i == 0) && (j == theDojo[i].length-1)) {
             if (theDojo[i][j - 1] === true) {
                 adjacent++;
             }
@@ -118,7 +119,7 @@ function clearBush(i, j, element) {
                 adjacent++;
             }
         // Corner
-        } else if ((i == 9) && (j == 0)) {
+        } else if ((i == theDojo.length-1) && (j == 0)) {
             if (theDojo[i - 1][j] === true) {
                 adjacent++;
             }
@@ -129,7 +130,7 @@ function clearBush(i, j, element) {
                 adjacent++;
             }
         // Corner
-        } else if ((i == 9) && (j == 9)) {
+        } else if ((i == theDojo.length-1) && (j == theDojo[i].length-1)) {
             if (theDojo[i - 1][j] === true) {
                 adjacent++;
             }
@@ -242,6 +243,7 @@ function clearBush(i, j, element) {
             element.innerText = adjacent;
         }
         theDojo[i][j] = adjacent
+        showScore()
         // When 90 safe squares have been uncovered
         if (uncovered.length == 90) {
             //Win message! Game OVER!
@@ -255,22 +257,23 @@ function clearBush(i, j, element) {
         }
     // If a ninja is on the square clicked
     } else if (theDojo[i][j] === true) {
-        // Reveal all other ninjas
+        // Reveal all ninjas
         for(let p = 0; p < 10; p++){
-            for(let q = 0; q <10; q++){
+            for(let q = 0; q < 10; q++){
                 if (theDojo[p][q] === true){
                     //array of ninja PNG differentiation
-                    let ninjas = ["","(1)","(2)"]
+                    let ninjas = ["","1","2"]
                     //random number between 0-2
                     let rand = Math.floor(Math.random()*3)
                     let nin = document.querySelector(`#sq-${p}${q}`)
                     // Apply randomized ninja to square
-                    nin.style.backgroundImage = `https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/ninja${ninjas[rand]}.png")`;
+                    nin.classList.remove('bush')
+                    nin.classList.add(`ninja${ninjas[rand]}`)
                     nin.style.backgroundColor = "crimson";
                 }
             }
         }
-        
+        showScore()
         var deliver = Math.floor(Math.random()*3);
         const sound = ["twig.mp3","sniff.mp3","sneeze.mp3"]
         play(sound[deliver])
@@ -309,11 +312,63 @@ function flag(element) {
         // Allow Shuriken-flag
         element.classList.toggle("shuriken")
     }
+    showScore()
     return false;
 }
-
 dojoDiv.innerHTML = render(theDojo);
 
+let showScore = () => {
+    let leftover = rows * cols - horde - uncovered.length;
+    let cnt = document.querySelector('#countdown')
+    let shuri = 0;
+    for(let p = 0; p < 10; p++){
+        for(let q = 0; q < 10; q++){    
+            let nin = document.querySelector(`#sq-${p}${q}`)
+            if (nin.classList.contains('shuriken')){
+                shuri++;
+            }
+        }
+    }
+    let ratio = horde - shuri
+    // Display leftover spaces to clear and difference of shuriken applied to ninja hiding
+    cnt.innerHTML = `
+        <div class="numbers">${leftover}</div>
+        <div class="numbers">${ratio}</div>
+    `
+    
+}
+
+// let changeChallenge = (mode) => {
+//     switch(mode){
+//         case 0:
+//             // Default mode is 10x10 with 10 ninja
+//             horde = 10;
+//             rows = 10;
+//             cols = 10;
+//             theDojo = Array.from({ length: rows }, () => Array.from({ length: cols }, () => false))
+//             dojoDiv.innerHTML = render(theDojo);
+//             break;
+//         case 1:
+//             // Easy mode is 8x8 with 5 ninja
+//             horde = 5;
+//             rows = 8;
+//             cols = 10;
+//             theDojo = Array.from({ length: rows }, () => Array.from({ length: cols }, () => false))
+//             dojoDiv.style.width = "256px";
+//             dojoDiv.innerHTML = render(theDojo);
+//             break;
+//         case 2:
+//             // Hard mode is 30x16 with 25 ninja?
+//             horde = 25;
+//             rows = 20;
+//             cols = 10;
+//             theDojo = Array.from({ length: rows }, () => Array.from({ length: cols }, () => false))
+//             dojoDiv.innerHTML = render(theDojo);
+//             dojoDiv.style.width = "512px";
+//             break;
+//     }
+// }
+// changeChallenge(2)
 
 wowList = ["wowc.mp3","wowd.mp3","wowf.mp3","wowh.mp3","wowi.mp3","wowl.mp3","wown.mp3","wowq.mp3","wowr.mp3","wows.mp3","wowy.mp3","wowz.mp3"]
 const wow = () => {

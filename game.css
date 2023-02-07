@@ -44,9 +44,8 @@ body {
     height: 310px;
     position: relative;
     background-color: rgba(0,0,0,.6);
-    top: -320px;
+    top: -439px;
     font-size: 120%;
-    opacity: 90%;
     color: red;
 }
 .tatami {
@@ -65,7 +64,18 @@ body {
     background-image: url('https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/bush.png');
     background-size: contain;
 }
-    
+.ninja {
+    background-image: url("https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/ninja.png");
+    background-size: contain;
+}    
+.ninja1 {
+    background-image: url("https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/ninja(1).png");
+    background-size: contain;
+}    
+.ninja2 {
+    background-image: url("https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/ninja(2).png");
+    background-size: contain;
+}    
 .tatami:active {
     border: 2px solid #999;
     border-right: 2px solid #ccc;
@@ -257,4 +267,17 @@ ul li {
 .sample {
     height: 2em;
     width: 2em;
+}
+#countdown {
+    display: flex;
+    width: 320px;
+    justify-content: space-between;
+    margin: auto;
+    padding: 10px;
+}
+.numbers {
+    color: gold;
+    background-color: rgba(0,0,0,.7);
+    line-height: 1.5em;
+    padding: 1%;
 }
