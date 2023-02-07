@@ -265,7 +265,7 @@ function clearBush(i, j, element) {
                     let rand = Math.floor(Math.random()*3)
                     let nin = document.querySelector(`#sq-${p}${q}`)
                     // Apply randomized ninja to square
-                    nin.style.backgroundImage = `url("assets/ninja${ninjas[rand]}.png")`;
+                    nin.style.backgroundImage = `https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/ninja${ninjas[rand]}.png")`;
                     nin.style.backgroundColor = "crimson";
                 }
             }
@@ -336,8 +336,8 @@ const showInstructions = () => {
         <hr>\
         <p>How to Play:</p> \
         <ul>\
-            <li>Click(press) the lil bushsters <img src=\"./assets/bush.png\" alt=\"bushster\" class=\"sample\"> to clear the board, avoiding ninja <img src=\"./assets/ninja.png\" alt=\"bushster\" class=\"sample\"></li>\
-            <li>Right-click (long press) on bushels to place shuriken <img src=\"./assets/star.png\" alt=\"shuriken\" class=\"sample\"> or \"flags\" on suspected ninja locations</li>\
+            <li>Click(press) the lil bushsters <img src=\"https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/bush.png\" alt=\"bushster\" class=\"sample\"> to clear the board, avoiding ninja <img src=\"https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/ninja.png\" alt=\"bushster\" class=\"sample\"></li>\
+            <li>Right-click (long press) on bushels to place shuriken <img src=\"https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/star.png\" alt=\"shuriken\" class=\"sample\"> or \"flags\" on suspected ninja locations</li>\
             <ul>\
             <li class=\"sub\">Squares with shuriken placed on them are unclickable</li>\
             <li class=\"sub\">Right-click (long press) again to remove the shuriken</li>\
