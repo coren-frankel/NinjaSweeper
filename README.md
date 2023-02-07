@@ -7,6 +7,8 @@
 * Difficulty settings: Grid size change & ninja frequency change 
 * Music?
 * Conditionally rendered emojis to replicate OG Minesweeper "Sunglasses Guy"
+* Favicon!!!
+* Build in a tutorial for minesweeper-challenged folk
 
 >>>Recently Checked off the list:
 + Make flag/shuriken function a toggle, so user can remove a shuriken if needed

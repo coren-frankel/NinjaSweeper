@@ -247,8 +247,9 @@ function clearBush(i, j, element) {
             //Win message! Game OVER!
             console.log("Congratulations! You're safe, for now.")
             endgame.style.display = "flex";
-            endgame.innerHTML = (`<div class="bye"><h3>Game Over!</h3><p>You evaded the ninjas, and will live to see another day!</p><p>You find a discarded sandwich and chomp cheerfully into the Sunset!</p><p>Vaya con Dios, soldier...</p><div>`)
-            endgame.style.color = "violet";
+            endgame.innerHTML = (`<div class="bye"><h3>Success!</h3><p>You evaded the ninjas, and will live to see another day!</p><p>You find a discarded sandwich and chomp cheerfully into the Sunset!</p><p>Vaya con Dios, soldier...</p><div>`)
+            endgame.style.color = "chartreuse";
+            endgame.style.textStroke= "violet";
             play("chomp.wav")
             endgame.innerHTML += (`<button id="restart" onclick="location.reload()">Play Again?</button>`);
         }
@@ -311,7 +312,6 @@ function flag(element) {
     return false;
 }
 
-
 dojoDiv.innerHTML = render(theDojo);
 
 
@@ -330,22 +330,23 @@ const showInstructions = () => {
     instr = document.querySelector("#instr");
     title = document.querySelector("#title")
     const displayInstructions = () => {
-        instr.style.display="block"
-        instr.style.padding="20px"
+        instr.style.display="flex"
+        instr.style.padding="30px"
         instr.innerHTML = "<h3>Welcome to Ninja Sweeper!</h3>\
-            <p>How to Play:</p> \
+        <hr>\
+        <p>How to Play:</p> \
+        <ul>\
+            <li>Click(press) the lil bushsters <img src=\"./assets/bush.png\" alt=\"bushster\" class=\"sample\"> to clear the board, avoiding ninja <img src=\"./assets/ninja.png\" alt=\"bushster\" class=\"sample\"></li>\
+            <li>Right-click (long press) on bushels to place shuriken <img src=\"./assets/star.png\" alt=\"shuriken\" class=\"sample\"> or \"flags\" on suspected ninja locations</li>\
             <ul>\
-            <li>Click(press) the lil bushsters <img src=\"./assets/bush.png\" alt=\"bushster\" class=\"tatami\"> to clear the board</li>\
-            <li>Right-click(long press) on bushels to place shuriken <img src=\"./assets/star.png\" alt=\"shuriken\" class=\"tatami\"> or \"flags\" on suspected ninja locations</li>\
-                <ul>\
-                    <li class=\"sub\">Squares with shuriken placed on them are unclickable</li>\
-                    <li class=\"sub\">Right-click(long press) again to remove the shuriken</li>\
-                </ul>\
-            <li id=\"numbs\"><span>Numbers on a square (i.e.</span><div class=\"tatami\" id=\"ex\">4</div><span>) indicate how many ninjas are surrounding it.</span></li>\
+            <li class=\"sub\">Squares with shuriken placed on them are unclickable</li>\
+            <li class=\"sub\">Right-click (long press) again to remove the shuriken</li>\
+            </ul>\
+            <li id=\"numbs\"><span>Numbers on a square indicate how many ninjas surround it.</span></li>\
             <li>Use the numbers to deduce and uncover all the unoccupied squares to win!</li>\
-            </ul><br>\
-            <p>For a more in depth tutorial, find the <span class=\"info\">i</span> button.</p>\
-            <h3><em>Good Luck!</em></h3>"
+        </ul><br><hr>\
+        <p>For a more in depth tutorial, find the <span class=\"info\">i</span>.</p>\
+        <h3><em>Good Luck!</em></h3>"
     }
     const disappear = () => {
         instr.style.display="none"
@@ -358,26 +359,106 @@ const showInstructions = () => {
 }
 showInstructions()
 
-tut = document.querySelector("#tutorialWindow");
-const showTutorial = () => {
-    //To-Do: 
-    //-reveal gif of the starting moves
-    //-render a description side-bar
-    tut.innerHTML = "\
-        <div id=\"cap\">\
+tutortSlides = [
+    "\
+        <div role=\"button\" class=\"change\" id=\"back\" onclick=\"lastSlide()\"><</div>\
+        <div id=\"tortPanels\">\
+            <div id=\"tutImage1\" class=\"tutImage\"></div>\
+            <div id=\"cap\">\
+            <p><em>Click anywhere!</em></p>\
             <p>The 1st move is always blind luck...</p>\
-            <p>Click anywhere!</p>\
             <p>Not every click will reveal enough to use against the ninja.</p>\
-            <p>But once you've cleared some bushes you can get to work!</p>\
+            <p>Blank spaces are safe, numbers indicate how many ninjas touch that square adjacently, and you'll know when you've clicked a ninja. It happens.</p>\
+            </div>\
         </div>\
-        <div id=\"tutImage\"></div>\
+        <div role=\"button\" class=\"change\" id=\"next\" onclick=\"nextSlide()\">></div>\
+        <button class=\"info\" id=\"close\" onclick=\"closeTutorial()\">x</button>\
+    ",
+    "\
+        <div role=\"button\" class=\"change\" id=\"back\" onclick=\"lastSlide()\"><</div>\
+        <div id=\"tortPanels\">\
+            <div id=\"tutImage2\" class=\"tutImage\"></div>\
+            <div id=\"cap\">\
+            <p>Basic Strategy:</p>\
+            <em><ul id=\"tips\">\
+            <li>Approach islands and corners first</li>\
+            <li>Look for number squares that only touch the same amount of bushes</li>\
+            <li>Right-Click on a bush to flag it as a ninja square</li>\
+            <li>With ninja squares marked, you can deduce which squares are safe to clear</li>\
+            </ul></em>\
+            </div>\
+        </div>\
+        <div role=\"button\" class=\"change\" id=\"next\" onclick=\"nextSlide()\">></div>\
+        <button class=\"info\" id=\"close\" onclick=\"closeTutorial()\">x</button>\
+    ",
+    "\
+        <div role=\"button\" class=\"change\" id=\"back\" onclick=\"lastSlide()\"><</div>\
+        <div id=\"tortPanels\">\
+            <div id=\"tutImage3\" class=\"tutImage\"></div>\
+            <div id=\"cap\">\
+            <p>Pitfalls: Hubris</p>\
+            <p><em>Trust the numbers!</em></p>\
+            <p>If you flag a square that isn't hiding a ninja, it's up to you to correct it and clear it to win the game.</p>\
+            <p><em>Remove a shuriken with another right-click (long-press).</em></p>\
+            </div>\
+        </div>\
+        <div role=\"button\" class=\"change\" id=\"next\" onclick=\"nextSlide()\">></div>\
+        <button class=\"info\" id=\"close\" onclick=\"closeTutorial()\">x</button>\
+    ",
+    "\
+        <div role=\"button\" class=\"change\" id=\"back\" onclick=\"lastSlide()\"><</div>\
+        <div id=\"tortPanels\">\
+            <div id=\"tutImage4\" class=\"tutImage\"></div>\
+            <div id=\"cap\">\
+                <p>Pitfalls: Chance</p>\
+                <p><em>Luck may end the game</em></p>\
+                <p>Chance might place a set of bush that can't be cleared with deduction alone.</p>\
+                <p><em>Deal with it</em></p>\
+                <p>Sometimes you'll need to leave it to chance, pick one and go for it.</p>\
+            </div>\
+        </div>\
+        <div role=\"button\" class=\"change\" id=\"next\" onclick=\"nextSlide()\">></div>\
         <button class=\"info\" id=\"close\" onclick=\"closeTutorial()\">x</button>\
     "
-    //-accept clicks or spacebar progression
-    //-make "x" close button to ditch the tutorial
+]
+let current = 0;
+tut = document.querySelector("#tutorialWindow");
+const showTutorial = () => {
+    tut.innerHTML = tutortSlides[current]
+    tut.style.display = "flex";
+    //-accept clicks or spacebar progression\
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "left") {
+            lastSlide()
+        } else 
+            nextSlide()
+    })
+}
+const nextSlide = () => {
+    if (current == tutortSlides.length-1){
+        closeTutorial()
+    } else {
+        current++;
+        showTutorial()
+    }
+}
+const lastSlide = () => {
+    if (current == 0){
+        closeTutorial()
+    } else {
+        current--;
+        showTutorial()
+    }
 }
 const closeTutorial = () => {
     tut.style.display = "none";
+    current = 0;
+    document.removeEventListener("keydown",(e) => {
+        if (e.key === "left") {
+            lastSlide()
+        } else 
+            nextSlide()
+    })
 }
     // message to greet a clever developers
     var style = "color:cyan;font-size:1.5rem;font-weight:bold;";
