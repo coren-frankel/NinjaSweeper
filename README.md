@@ -5,10 +5,10 @@
 >>>Things I'd like to add in the future:
 * Animation of leaves or bush or ninja upon clicking on a ninja square
 * Difficulty settings: Grid size change & ninja frequency change 
+    - Show qty of ninjas (consider shuriken countdown--subtract shuriken from total ninjas? classic?) - Show qty blank spaces left
 * Music?
 * Conditionally rendered emojis to replicate OG Minesweeper "Sunglasses Guy"
 * Favicon!!!
-* Build in a tutorial for minesweeper-challenged folk
 
 >>>Recently Checked off the list:
 + Make flag/shuriken function a toggle, so user can remove a shuriken if needed
@@ -18,3 +18,5 @@
 + Render the shuriken "flagged" squares unclickable while the shuriken is there
 * Sounds? 
 + Make Owen Wilson say "wow" everytime the user highlights my name!
+* Build in a tutorial for minesweeper-challenged folk
++ 
