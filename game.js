@@ -352,13 +352,14 @@ const showInstructions = () => {
         instr.style.display="none"
     }
     //On hover, display
-    title.addEventListener("mouseenter",displayInstructions)
-    title.addEventListener("click",displayInstructions)
+    // title.addEventListener("mouseover",displayInstructions)
+    title.addEventListener("mouseover",displayInstructions)
     //On exit, hide
     title.addEventListener("mouseleave",disappear)
+    
 }
 showInstructions()
-
+// Tutorial slide array
 tutortSlides = [
     "\
         <div role=\"button\" class=\"change\" id=\"back\" onclick=\"lastSlide()\"><</div>\
@@ -421,19 +422,34 @@ tutortSlides = [
         <button class=\"info\" id=\"close\" onclick=\"closeTutorial()\">x</button>\
     "
 ]
+// Tutorial slide index
 let current = 0;
 tut = document.querySelector("#tutorialWindow");
+// Display tutorial over game and initiate keyboard navigation
 const showTutorial = () => {
     tut.innerHTML = tutortSlides[current]
     tut.style.display = "flex";
     //-accept clicks or spacebar progression\
-    document.addEventListener("keydown", (e) => {
-        if (e.key === "left") {
-            lastSlide()
-        } else 
-            nextSlide()
-    })
+    document.addEventListener("keydown", tutorialNavigator)
 }
+
+// Keystrokes for tutorial navigation
+const tutorialNavigator = (e) => {
+    e.preventDefault()
+    if (e.key === "ArrowLeft") {
+        return lastSlide()
+    } else if (e.key === "Escape") {
+        return closeTutorial()
+    } else if (e.key === "ArrowRight"){
+        return nextSlide()
+    } else if (e.key === " "){
+        if(current == tutortSlides.length-1){
+            return closeTutorial()
+        }
+        return nextSlide()
+    }
+}
+//forward or close tutorial
 const nextSlide = () => {
     if (current == tutortSlides.length-1){
         closeTutorial()
@@ -442,6 +458,7 @@ const nextSlide = () => {
         showTutorial()
     }
 }
+//backwards or close tutorial
 const lastSlide = () => {
     if (current == 0){
         closeTutorial()
@@ -450,19 +467,17 @@ const lastSlide = () => {
         showTutorial()
     }
 }
+
 const closeTutorial = () => {
     tut.style.display = "none";
+    tut.innerHTML = ""
     current = 0;
-    document.removeEventListener("keydown",(e) => {
-        if (e.key === "left") {
-            lastSlide()
-        } else 
-            nextSlide()
-    })
+    document.removeEventListener("keydown", tutorialNavigator)
 }
-    // message to greet a clever developers
-    var style = "color:cyan;font-size:1.5rem;font-weight:bold;";
-    console.log("%c" + "What's this?", style);
-    console.log("%c" + "You've discovered a strange map along the edge of the bush.", style);
-    console.table(theDojo);
-    console.log("%c" + "Perhaps it holds ninja secrets!", style);
+
+// message to greet a clever developers
+var style = "color:cyan;font-size:1.5rem;font-weight:bold;";
+console.log("%c" + "What's this?", style);
+console.log("%c" + "You've discovered a strange map along the edge of the bush.", style);
+console.table(theDojo);
+console.log("%c" + "Perhaps it holds ninja secrets!", style);
