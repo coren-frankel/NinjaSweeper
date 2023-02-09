@@ -1,6 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 /* Tutorial screen size format changes */
+@media screen and (min-width: 480px) {
+    #github:hover {
+        font-size: 1em;
+        -webkit-transition: all 0.4s ease-in-out; 
+        -moz-transition: all 0.4s ease-in-out; 
+        -ms-transition: all 0.4s ease-in-out; 
+        -o-transition: all 0.4s ease-in-out; 
+        transition: all 0.4s ease-in-out;
+    }
+}
 @media screen and (max-width: 890px) {
     div .change {
         top: 290px;
@@ -126,7 +136,7 @@ body {
     line-height: 2em;
 }
 #github:hover {
-    font-size: 3em;
+    font-size: 2em;
     -webkit-transition: all 0.4s ease-in-out; 
     -moz-transition: all 0.4s ease-in-out; 
     -ms-transition: all 0.4s ease-in-out; 
@@ -134,23 +144,20 @@ body {
     transition: all 0.4s ease-in-out;
 }
 #github {
-    position: relative;
     padding: 25px;
-    -webkit-transition: all 0.4s ease-in-out; 
-    -moz-transition: all 0.4s ease-in-out; 
-    -ms-transition: all 0.4s ease-in-out; 
-    -o-transition: all 0.4s ease-in-out; 
-    transition: all 0.4s ease-in-out;
 }
-a,
-#github {
+#github,
+#cred{
+    font-size: .5em;
     display: flex;
     width: fit-content;
     margin: auto;
 }
+#cred {
+    font-size: 7px;
+}
 a {
     background-color: black;
-    font-size: 50%;
     text-decoration: none;
     color: cyan;
 }
@@ -172,7 +179,7 @@ h3 {
 #header .info {
     position: absolute;
     top: 15px;
-    left: 350px;
+    left: 320px;
     font-size: 150%;
 }
 .info {

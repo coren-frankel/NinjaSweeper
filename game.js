@@ -484,7 +484,7 @@ tut = document.querySelector("#tutorialWindow");
 const showTutorial = () => {
     tut.innerHTML = tutortSlides[current]
     tut.style.display = "flex";
-    //-accept clicks or spacebar progression\
+    //-accept or spacebar progression\
     document.addEventListener("keydown", tutorialNavigator)
 }
 
