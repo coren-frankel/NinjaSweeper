@@ -313,21 +313,24 @@ function clearBush(i, j, element) {
     }
 }
 // Flag or Shuriken fn: right-click to toggle a shuriken on a square
-function flag(element) {
+function flag(el) {
     // If it's a bush
-    if (element.classList.contains("bush")) {
+    if (el.classList.contains("bush") ) {
         // Allow Shuriken-flag
-        element.classList.toggle("shuriken")
+        el.classList.toggle("shuriken")
     }
-    play("shurikenThrow.mp3")
+    if (el.classList.contains("shuriken")) {
+        play("shurikenThrow.mp3")
+    }
     showScore()
     return false;
 }
 dojoDiv.innerHTML = render(theDojo);
-
+// Display leftover spaces to clear 
+// & the difference of shuriken applied to ninja hiding
 let showScore = () => {
     let leftover = rows * cols - horde - uncovered.length;
-    let cnt = document.querySelector('#countdown')
+    let cntdwn = document.querySelector('#countdown')
     let shuri = 0;
     for (let p = 0; p < 10; p++) {
         for (let q = 0; q < 10; q++) {
@@ -338,10 +341,9 @@ let showScore = () => {
         }
     }
     let ratio = horde - shuri
-    // Display leftover spaces to clear and difference of shuriken applied to ninja hiding
-    cnt.innerHTML = `
-    <div class="numbers">${ratio}</div>
-    <div class="numbers">${leftover}</div>
+    cntdwn.innerHTML = `
+        <div class="numbers">${ratio}</div>
+        <div class="numbers">${leftover}</div>
     `
 
 }
@@ -400,7 +402,7 @@ const showInstructions = () => {
         <p>How to Play:</p> \
         <ul>\
             <li>Click (press) the lil bushsters <img src=\"https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/bush.png\" alt=\"bushster\" class=\"sample\"> to clear the board, avoiding ninja <img src=\"https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/ninja.png\" alt=\"bushster\" class=\"sample\"></li>\
-            <li>Right-click (long press) on bushels to place shuriken <img src=\"./assets/star.png\" alt=\"shuriken\" class=\"sample\"> or \"flags\" on suspected ninja locations</li>\
+            <li>Right-click (long press) on bushels to place shuriken <img src=\"https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/star.png\" alt=\"shuriken\" class=\"sample\"> or \"flags\" on suspected ninja locations</li>\
             <ul>\
             <li class=\"sub\">Squares with shuriken placed on them are unclickable</li>\
             <li class=\"sub\">Right-click (long press) again to remove the shuriken</li>\
@@ -420,14 +422,16 @@ const showInstructions = () => {
     title.addEventListener("touchstart", displayInstructions)
     //On exit, hide
     title.addEventListener("mouseleave", disappear)
-    title.addEventListener("touchleave", disappear)
+    title.addEventListener("touchend", disappear)
 
 }
 showInstructions()
+
+
 // Tutorial slide array
 tutortSlides = [
     "\
-        <div role=\"button\" class=\"change\" id=\"back\" onclick=\"lastSlide()\"><</div>\
+        <div role=\"button\" class=\"change\" id=\"back\" title=\"close tutorial\" onclick=\"lastSlide()\"><</div>\
         <div id=\"tortPanels\">\
             <div id=\"tutImage1\" class=\"tutImage\"></div>\
             <div id=\"cap\">\
@@ -437,41 +441,42 @@ tutortSlides = [
                 <p>Blank spaces are safe, numbers indicate how many ninjas touch that square adjacently, and you'll know when you've clicked a ninja. It happens.</p>\
             </div>\
         </div>\
-        <div role=\"button\" class=\"change\" id=\"next\" onclick=\"nextSlide()\">></div>\
+        <div role=\"button\" class=\"change\" id=\"next\" title=\"next\" onclick=\"nextSlide()\">></div>\
         <button class=\"info\" id=\"close\" onclick=\"closeTutorial()\">x</button>\
     ",
     "\
-    <div role=\"button\" class=\"change\" id=\"back\" onclick=\"lastSlide()\"><</div>\
-    <div id=\"tortPanels\">\
-    <div id=\"tutImage2\" class=\"tutImage\"></div>\
-    <div id=\"cap\">\
-    <p>Basic Strategy:</p>\
-    <em><ul id=\"tips\">\
-    <li>Approach islands and corners first</li>\
-    <li>Look for number squares that only touch the same amount of bushes</li>\
-    <li>Right-Click on a bush to flag it as a ninja square</li>\
-    <li>With ninja squares marked, you can deduce which squares are safe to clear</li>\
-    </ul></em>\
-    </div>\
-    </div>\
-    <div role=\"button\" class=\"change\" id=\"next\" onclick=\"nextSlide()\">></div>\
-    <button class=\"info\" id=\"close\" onclick=\"closeTutorial()\">x</button>\
+        <div role=\"button\" class=\"change\" id=\"back\" title=\"back\" onclick=\"lastSlide()\"><</div>\
+        <div id=\"tortPanels\">\
+            <div id=\"tutImage2\" class=\"tutImage\"></div>\
+            <div id=\"cap\">\
+                <p>Basic Strategy:</p>\
+                <em><ul id=\"tips\">\
+                <li>Approach islands and corners first</li>\
+                <li>Look for number squares that only touch the same amount of bushes</li>\
+                <li>Right-Click on a bush to flag it as a ninja square</li>\
+                <li>With ninja squares marked, you can deduce which squares are safe to clear</li>\
+                </ul></em>\
+            </div>\
+        </div>\
+        <div role=\"button\" class=\"change\" id=\"next\" title=\"next\" onclick=\"nextSlide()\">></div>\
+        <button class=\"info\" id=\"close\" onclick=\"closeTutorial()\">x</button>\
     ",
     "\
-        <div role=\"button\" class=\"change\" id=\"back\" onclick=\"lastSlide()\"><</div>\
+        <div role=\"button\" class=\"change\" id=\"back\" title=\"back\" onclick=\"lastSlide()\"><</div>\
         <div id=\"tortPanels\">\
             <div id=\"tutImage5\" class=\"tutImage\"></div>\
             <div id=\"cap\">\
-                <p><em>Use the countdowns that appear below the grid to keep you in check</em></p>\
+                <p><em>Vague Counters</em></p>\
+                <p>No minesweeper game is complete without mysterious number boxes outside of the grid</p>\
                 <p>The left shows how many shuriken are applied minus the total number of hidden ninja</p>\
                 <p>The right marks the remaining safe spaces to clear, 0 marking a game win</p>\
             </div>\
         </div>\
-        <div role=\"button\" class=\"change\" id=\"next\" onclick=\"nextSlide()\">></div>\
+        <div role=\"button\" class=\"change\" id=\"next\" title=\"next\" onclick=\"nextSlide()\">></div>\
         <button class=\"info\" id=\"close\" onclick=\"closeTutorial()\">x</button>\
     ",
     "\
-        <div role=\"button\" class=\"change\" id=\"back\" onclick=\"lastSlide()\"><</div>\
+        <div role=\"button\" class=\"change\" id=\"back\" title=\"back\" onclick=\"lastSlide()\"><</div>\
         <div id=\"tortPanels\">\
             <div id=\"tutImage3\" class=\"tutImage\"></div>\
             <div id=\"cap\">\
@@ -481,11 +486,11 @@ tutortSlides = [
                 <p><em>Remove a shuriken with another right-click (long-press).</em></p>\
             </div>\
         </div>\
-        <div role=\"button\" class=\"change\" id=\"next\" onclick=\"nextSlide()\">></div>\
+        <div role=\"button\" class=\"change\" id=\"next\" title=\"next\" onclick=\"nextSlide()\">></div>\
         <button class=\"info\" id=\"close\" onclick=\"closeTutorial()\">x</button>\
     ",
     "\
-        <div role=\"button\" class=\"change\" id=\"back\" onclick=\"lastSlide()\"><</div>\
+        <div role=\"button\" class=\"change\" id=\"back\" title=\"back\" onclick=\"lastSlide()\"><</div>\
         <div id=\"tortPanels\">\
             <div id=\"tutImage4\" class=\"tutImage\"></div>\
             <div id=\"cap\">\
@@ -496,7 +501,7 @@ tutortSlides = [
                 <p>Sometimes you'll need to leave it to chance, pick one and go for it.</p>\
             </div>\
         </div>\
-        <div role=\"button\" class=\"change\" id=\"next\" onclick=\"nextSlide()\">></div>\
+        <div role=\"button\" class=\"change\" id=\"next\" title=\"next\" onclick=\"nextSlide()\">></div>\
         <button class=\"info\" id=\"close\" onclick=\"closeTutorial()\">x</button>\
     "
 ]
@@ -511,8 +516,7 @@ const showTutorial = () => {
     document.addEventListener("keydown", tutorialNavigator)
 
     // Swipeable navigation of tutorial for touchscreens/mobile
-    let touchstartX = 0
-    let touchendX = 0
+    let touchstartX = 0, touchendX = 0;
     function checkDirection() {
         if (touchendX < touchstartX) nextSlide()
         if (touchendX > touchstartX) lastSlide()

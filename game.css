@@ -71,13 +71,10 @@ body {
     border-bottom: 2px solid #ccc;
     background-color: white;
 }
-
 .shuriken {
-    background-image: url('./assets/star.png');
+    background-image: url('https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/star.png');
     background-size: contain;
 }
-
-
 #restart {
     width: 60%;
     height: 2em;
@@ -146,6 +143,12 @@ h3 {
     margin: auto;
     text-align: center;
 }
+.defTitle {
+    border: 1px solid black;
+}
+.marquis {
+    border: 1px dashed yellow;
+}
 #header {
     display: flex;
     position: relative;
@@ -203,7 +206,7 @@ ul li {
     background-image: url("https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/roshambo.gif");
 }
 #tutImage5{
-    background: url(/assets/countdowns.gif);
+    background: url("https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/countdowns.gif");
     background-size: cover;
 }
 .showTuto {
@@ -213,7 +216,7 @@ ul li {
     display: flex;
     justify-content: center;
     position: relative;
-    top: -430px;
+    top: -429px;
     left: 18px;
 }
 #tips {
@@ -303,5 +306,14 @@ ul li {
         -webkit-text-stroke: 1px navy;
         -moz-text-stroke: 1px navy;
     }
-    
+    #next {
+        position: relative;
+        top: 330px;
+        left: -40px;
+    }
+    #back {
+        position: relative;
+        top: 330px;
+        left: 35px;
+    }
 }
