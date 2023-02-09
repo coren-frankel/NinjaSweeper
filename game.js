@@ -31,7 +31,7 @@ function render(theDojo) {
         // if x and y randomly match a previous ninja square, try again
         if (theDojo[x][y] === true) {
             ninja--;
-        // otherwise, place a ninja
+            // otherwise, place a ninja
         } else {
             theDojo[x][y] = true;
         }
@@ -44,11 +44,11 @@ function render(theDojo) {
 // reveals a ninja and ends the game,
 // or on safe squares will recursively reveal adjacent safe squares.
 function clearBush(i, j, element) {
-// i and j are the indexes to check theDojo 2D Array values
-// element refers to the dom element selected
+    // i and j are the indexes to check theDojo 2D Array values
+    // element refers to the dom element selected
     // If a shuriken is currently applied
     if (element.classList.contains("shuriken")) {
-    // don't allow clearBush() to continue
+        // don't allow clearBush() to continue
         return null
     }
     // Adjacent ninjas count initiates at 0
@@ -56,10 +56,10 @@ function clearBush(i, j, element) {
     if (theDojo[i][j] === false) {
         // If the box has already been cleared
         if (uncovered.includes(`${i}${j}`)) {
-        // stop clearBush() from executing
+            // stop clearBush() from executing
             return null
         } else {
-        // otherwise, add the current square to the list of exposed squares
+            // otherwise, add the current square to the list of exposed squares
             uncovered.push(`${i}${j}`)
         }
         // Top Row
@@ -79,8 +79,8 @@ function clearBush(i, j, element) {
             if (theDojo[i + 1][j - 1] === true) {
                 adjacent++;
             }
-        // Bottom Row
-        } else if (i == theDojo.length-1) {
+            // Bottom Row
+        } else if (i == theDojo.length - 1) {
             if (theDojo[i][j + 1] === true) {
                 adjacent++;
             }
@@ -96,7 +96,7 @@ function clearBush(i, j, element) {
             if (theDojo[i - 1][j - 1] === true) {
                 adjacent++;
             }
-        // Corner
+            // Corner
         } else if ((i == 0) && (j == 0)) {
             if (theDojo[i + 1][j] === true) {
                 adjacent++;
@@ -107,8 +107,8 @@ function clearBush(i, j, element) {
             if (theDojo[i + 1][j + 1] === true) {
                 adjacent++;
             }
-        // Corner
-        } else if ((i == 0) && (j == theDojo[i].length-1)) {
+            // Corner
+        } else if ((i == 0) && (j == theDojo[i].length - 1)) {
             if (theDojo[i][j - 1] === true) {
                 adjacent++;
             }
@@ -118,8 +118,8 @@ function clearBush(i, j, element) {
             if (theDojo[i + 1][j] === true) {
                 adjacent++;
             }
-        // Corner
-        } else if ((i == theDojo.length-1) && (j == 0)) {
+            // Corner
+        } else if ((i == theDojo.length - 1) && (j == 0)) {
             if (theDojo[i - 1][j] === true) {
                 adjacent++;
             }
@@ -129,8 +129,8 @@ function clearBush(i, j, element) {
             if (theDojo[i][j + 1] === true) {
                 adjacent++;
             }
-        // Corner
-        } else if ((i == theDojo.length-1) && (j == theDojo[i].length-1)) {
+            // Corner
+        } else if ((i == theDojo.length - 1) && (j == theDojo[i].length - 1)) {
             if (theDojo[i - 1][j] === true) {
                 adjacent++;
             }
@@ -168,76 +168,76 @@ function clearBush(i, j, element) {
         }
         element.classList.toggle("active");
         element.classList.remove("bush");
-        if (adjacent == 0){
+        if (adjacent == 0) {
             element.innerText = ""
-            
-            var up = document.querySelector(`#sq-${i-1}${j}`)
-            var upRight = document.querySelector(`#sq-${i-1}${j+1}`)
-            var right = document.querySelector(`#sq-${i}${j+1}`)
-            var downRight = document.querySelector(`#sq-${i+1}${j+1}`)
-            var down = document.querySelector(`#sq-${i+1}${j}`)
-            var downLeft = document.querySelector(`#sq-${i+1}${j-1}`)
-            var left = document.querySelector(`#sq-${i}${j-1}`)
-            var upLeft = document.querySelector(`#sq-${i-1}${j-1}`)
-            
+
+            var up = document.querySelector(`#sq-${i - 1}${j}`)
+            var upRight = document.querySelector(`#sq-${i - 1}${j + 1}`)
+            var right = document.querySelector(`#sq-${i}${j + 1}`)
+            var downRight = document.querySelector(`#sq-${i + 1}${j + 1}`)
+            var down = document.querySelector(`#sq-${i + 1}${j}`)
+            var downLeft = document.querySelector(`#sq-${i + 1}${j - 1}`)
+            var left = document.querySelector(`#sq-${i}${j - 1}`)
+            var upLeft = document.querySelector(`#sq-${i - 1}${j - 1}`)
+
             // Top-Left Corner clear
             if (i == 0 && j == 0) {
-                clearBush(i+1,j,down)
-                clearBush(i,j+1,right)
-                clearBush(i+1,j+1,downRight)
-            // Top-Right Corner clear
+                clearBush(i + 1, j, down)
+                clearBush(i, j + 1, right)
+                clearBush(i + 1, j + 1, downRight)
+                // Top-Right Corner clear
             } else if (i == 0 && j == 9) {
-                clearBush(i,j-1,left)
-                clearBush(i+1,j-1,downLeft)
-                clearBush(i+1,j,down)
-            // Bottom-Right Corner clear
+                clearBush(i, j - 1, left)
+                clearBush(i + 1, j - 1, downLeft)
+                clearBush(i + 1, j, down)
+                // Bottom-Right Corner clear
             } else if (i == 9 && j == 9) {
-                clearBush(i-1,j,up)
-                clearBush(i-1,j-1,upLeft)
-                clearBush(i,j-1,left)
-            // Bottom-Left Corner clear
+                clearBush(i - 1, j, up)
+                clearBush(i - 1, j - 1, upLeft)
+                clearBush(i, j - 1, left)
+                // Bottom-Left Corner clear
             } else if (i == 9 && j == 0) {
-                clearBush(i-1,j,up)
-                clearBush(i-1,j+1,upRight)
-                clearBush(i,j+1,right)
-            // Top row clearing
+                clearBush(i - 1, j, up)
+                clearBush(i - 1, j + 1, upRight)
+                clearBush(i, j + 1, right)
+                // Top row clearing
             } else if (i == 0) {
-                clearBush(i,j+1,right)
-                clearBush(i+1,j+1,downRight)
-                clearBush(i+1,j,down)
-                clearBush(i,j-1,left)
-                clearBush(i+1,j-1,downLeft)
-            // Bottom row clearing
+                clearBush(i, j + 1, right)
+                clearBush(i + 1, j + 1, downRight)
+                clearBush(i + 1, j, down)
+                clearBush(i, j - 1, left)
+                clearBush(i + 1, j - 1, downLeft)
+                // Bottom row clearing
             } else if (i == 9) {
-                clearBush(i,j+1,right)
-                clearBush(i,j-1,left)
-                clearBush(i-1,j+1,upRight)
-                clearBush(i-1,j,up)
-                clearBush(i-1,j-1,upLeft)
-            // Right column clearing
+                clearBush(i, j + 1, right)
+                clearBush(i, j - 1, left)
+                clearBush(i - 1, j + 1, upRight)
+                clearBush(i - 1, j, up)
+                clearBush(i - 1, j - 1, upLeft)
+                // Right column clearing
             } else if (j == 9) {
-                clearBush(i-1,j,up)
-                clearBush(i+1,j,down)
-                clearBush(i+1,j-1,downLeft)
-                clearBush(i,j-1,left)
-                clearBush(i-1,j-1,upLeft)
-            // Left column clearing
+                clearBush(i - 1, j, up)
+                clearBush(i + 1, j, down)
+                clearBush(i + 1, j - 1, downLeft)
+                clearBush(i, j - 1, left)
+                clearBush(i - 1, j - 1, upLeft)
+                // Left column clearing
             } else if (j == 0) {
-                clearBush(i-1,j,up)
-                clearBush(i-1,j+1,upRight)
-                clearBush(i,j+1,right)
-                clearBush(i+1,j+1,downRight)
-                clearBush(i+1,j,down)
-            // Non-edge or corner clearing
+                clearBush(i - 1, j, up)
+                clearBush(i - 1, j + 1, upRight)
+                clearBush(i, j + 1, right)
+                clearBush(i + 1, j + 1, downRight)
+                clearBush(i + 1, j, down)
+                // Non-edge or corner clearing
             } else {
-                clearBush(i-1,j,up)
-                clearBush(i-1,j+1,upRight)
-                clearBush(i,j+1,right)
-                clearBush(i+1,j+1,downRight)
-                clearBush(i+1,j,down)
-                clearBush(i+1,j-1,downLeft)
-                clearBush(i,j-1,left)
-                clearBush(i-1,j-1,upLeft)
+                clearBush(i - 1, j, up)
+                clearBush(i - 1, j + 1, upRight)
+                clearBush(i, j + 1, right)
+                clearBush(i + 1, j + 1, downRight)
+                clearBush(i + 1, j, down)
+                clearBush(i + 1, j - 1, downLeft)
+                clearBush(i, j - 1, left)
+                clearBush(i - 1, j - 1, upLeft)
             }
         } else {
             element.innerText = adjacent;
@@ -247,24 +247,31 @@ function clearBush(i, j, element) {
         // When 90 safe squares have been uncovered
         if (uncovered.length == 90) {
             //Win message! Game OVER!
-            console.log("Congratulations! You're safe, for now.")
+            console.log("Congratulations! You're safe, for now...")
             endgame.style.display = "flex";
-            endgame.innerHTML = (`<div class="bye"><h3>Success!</h3><p>You evaded the ninjas, and will live to see another day!</p><p>You find a discarded sandwich and chomp cheerfully into the Sunset!</p><p>Vaya con Dios, soldier...</p><div>`)
+            endgame.innerHTML = (
+                `<div class="bye">
+                    <h3>Success!</h3>
+                    <p>You evaded the ninja, and will live to see another day!</p>
+                    <p>You find a discarded sandwich and chomp cheerfully into the sunset!</p>
+                    <p>Vaya con Dios, soldier...</p>
+                <div>`
+            )
             endgame.style.color = "chartreuse";
-            endgame.style.textStroke= "violet";
+            endgame.style.textStroke = "violet";
             play("chomp.wav")
             endgame.innerHTML += (`<button id="restart" onclick="location.reload()">Play Again?</button>`);
         }
-    // If a ninja is on the square clicked
+        // If a ninja is on the square clicked
     } else if (theDojo[i][j] === true) {
         // Reveal all ninjas
-        for(let p = 0; p < 10; p++){
-            for(let q = 0; q < 10; q++){
-                if (theDojo[p][q] === true){
+        for (let p = 0; p < 10; p++) {
+            for (let q = 0; q < 10; q++) {
+                if (theDojo[p][q] === true) {
                     //array of ninja PNG differentiation
-                    let ninjas = ["","1","2"]
+                    let ninjas = ["", "1", "2"]
                     //random number between 0-2
-                    let rand = Math.floor(Math.random()*3)
+                    let rand = Math.floor(Math.random() * 3)
                     let nin = document.querySelector(`#sq-${p}${q}`)
                     // Apply randomized ninja to square
                     nin.classList.remove('bush')
@@ -274,10 +281,10 @@ function clearBush(i, j, element) {
             }
         }
         showScore()
-        var deliver = Math.floor(Math.random()*3);
-        const sound = ["twig.mp3","sniff.mp3","sneeze.mp3"]
+        var deliver = Math.floor(Math.random() * 3);
+        const sound = ["twig.mp3", "sniff.mp3", "sneeze.mp3"]
         play(sound[deliver])
-        endgame.style.display= "flex";
+        endgame.style.display = "flex";
         // Random 'loser' message from list of 3
         const loser = [
             `<div class="bye">
@@ -285,13 +292,13 @@ function clearBush(i, j, element) {
                 <p>A twig snaps beneath your toes.</p>
                 <p>The sandwich falls to the ground.</p>
                 <h3>Game Over!</h3>
-            </div>`, 
+            </div>`,
             `<div class="bye">
                 <p>The breeze changes direction.</p>
                 <p>They've caught your scent.</p>
                 <p>The trees around you rustle as the ninja swarm!</p>
                 <h3>Game Over!</h3>
-            <div>`, 
+            <div>`,
             `<div class="bye">
                 <p>**Achoo!**</p>
                 <p>Did that bush just sneeze?</p>
@@ -302,16 +309,17 @@ function clearBush(i, j, element) {
         endgame.innerHTML = (loser[deliver])
         // Add Restart button to the end of the message
         endgame.innerHTML += (`<button id="restart" onclick="location.reload()">Restart</button>`);
-        endgame.style.display= "flex";
+        endgame.style.display = "flex";
     }
 }
 // Flag or Shuriken fn: right-click to toggle a shuriken on a square
 function flag(element) {
     // If it's a bush
-    if (element.classList.contains("bush")){
+    if (element.classList.contains("bush")) {
         // Allow Shuriken-flag
         element.classList.toggle("shuriken")
     }
+    play("shurikenThrow.mp3")
     showScore()
     return false;
 }
@@ -321,10 +329,10 @@ let showScore = () => {
     let leftover = rows * cols - horde - uncovered.length;
     let cnt = document.querySelector('#countdown')
     let shuri = 0;
-    for(let p = 0; p < 10; p++){
-        for(let q = 0; q < 10; q++){    
+    for (let p = 0; p < 10; p++) {
+        for (let q = 0; q < 10; q++) {
             let nin = document.querySelector(`#sq-${p}${q}`)
-            if (nin.classList.contains('shuriken')){
+            if (nin.classList.contains('shuriken')) {
                 shuri++;
             }
         }
@@ -335,7 +343,7 @@ let showScore = () => {
     <div class="numbers">${ratio}</div>
     <div class="numbers">${leftover}</div>
     `
-    
+
 }
 
 // let changeChallenge = (mode) => {
@@ -370,13 +378,13 @@ let showScore = () => {
 // }
 // changeChallenge(2)
 
-wowList = ["wowc.mp3","wowd.mp3","wowf.mp3","wowh.mp3","wowi.mp3","wowl.mp3","wown.mp3","wowq.mp3","wowr.mp3","wows.mp3","wowy.mp3","wowz.mp3"]
+wowList = ["wowc.mp3", "wowd.mp3", "wowf.mp3", "wowh.mp3", "wowi.mp3", "wowl.mp3", "wown.mp3", "wowq.mp3", "wowr.mp3", "wows.mp3", "wowy.mp3", "wowz.mp3"]
 const wow = () => {
-    let rand = Math.floor(Math.random()*wowList.length)
+    let rand = Math.floor(Math.random() * wowList.length)
     play(wowList[rand])
 }
 const play = (mp3) => {
-    var audio = new Audio("./assets/"+mp3);
+    var audio = new Audio("./assets/" + mp3);
     audio.loop = false;
     audio.play();
 }
@@ -385,14 +393,14 @@ const showInstructions = () => {
     instr = document.querySelector("#instr");
     title = document.querySelector("#title")
     const displayInstructions = () => {
-        instr.style.display="flex"
-        instr.style.padding="30px"
+        instr.style.display = "flex"
+        instr.style.padding = "30px"
         instr.innerHTML = "<h3>Welcome to Ninja Sweeper!</h3>\
         <hr>\
         <p>How to Play:</p> \
         <ul>\
-            <li>Click(press) the lil bushsters <img src=\"https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/bush.png\" alt=\"bushster\" class=\"sample\"> to clear the board, avoiding ninja <img src=\"https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/ninja.png\" alt=\"bushster\" class=\"sample\"></li>\
-            <li>Right-click (long press) on bushels to place shuriken <img src=\"https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/star.png\" alt=\"shuriken\" class=\"sample\"> or \"flags\" on suspected ninja locations</li>\
+            <li>Click (press) the lil bushsters <img src=\"https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/bush.png\" alt=\"bushster\" class=\"sample\"> to clear the board, avoiding ninja <img src=\"https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/ninja.png\" alt=\"bushster\" class=\"sample\"></li>\
+            <li>Right-click (long press) on bushels to place shuriken <img src=\"./assets/star.png\" alt=\"shuriken\" class=\"sample\"> or \"flags\" on suspected ninja locations</li>\
             <ul>\
             <li class=\"sub\">Squares with shuriken placed on them are unclickable</li>\
             <li class=\"sub\">Right-click (long press) again to remove the shuriken</li>\
@@ -404,14 +412,16 @@ const showInstructions = () => {
         <h3><em>Good Luck!</em></h3>"
     }
     const disappear = () => {
-        instr.style.display="none"
+        instr.style.display = "none"
     }
     //On hover, display
     // title.addEventListener("mouseover",displayInstructions)
-    title.addEventListener("mouseover",displayInstructions)
+    title.addEventListener("mouseover", displayInstructions)
+    title.addEventListener("touchstart", displayInstructions)
     //On exit, hide
-    title.addEventListener("mouseleave",disappear)
-    
+    title.addEventListener("mouseleave", disappear)
+    title.addEventListener("touchleave", disappear)
+
 }
 showInstructions()
 // Tutorial slide array
@@ -431,6 +441,23 @@ tutortSlides = [
         <button class=\"info\" id=\"close\" onclick=\"closeTutorial()\">x</button>\
     ",
     "\
+    <div role=\"button\" class=\"change\" id=\"back\" onclick=\"lastSlide()\"><</div>\
+    <div id=\"tortPanels\">\
+    <div id=\"tutImage2\" class=\"tutImage\"></div>\
+    <div id=\"cap\">\
+    <p>Basic Strategy:</p>\
+    <em><ul id=\"tips\">\
+    <li>Approach islands and corners first</li>\
+    <li>Look for number squares that only touch the same amount of bushes</li>\
+    <li>Right-Click on a bush to flag it as a ninja square</li>\
+    <li>With ninja squares marked, you can deduce which squares are safe to clear</li>\
+    </ul></em>\
+    </div>\
+    </div>\
+    <div role=\"button\" class=\"change\" id=\"next\" onclick=\"nextSlide()\">></div>\
+    <button class=\"info\" id=\"close\" onclick=\"closeTutorial()\">x</button>\
+    ",
+    "\
         <div role=\"button\" class=\"change\" id=\"back\" onclick=\"lastSlide()\"><</div>\
         <div id=\"tortPanels\">\
             <div id=\"tutImage5\" class=\"tutImage\"></div>\
@@ -438,23 +465,6 @@ tutortSlides = [
                 <p><em>Use the countdowns that appear below the grid to keep you in check</em></p>\
                 <p>The left shows how many shuriken are applied minus the total number of hidden ninja</p>\
                 <p>The right marks the remaining safe spaces to clear, 0 marking a game win</p>\
-            </div>\
-        </div>\
-        <div role=\"button\" class=\"change\" id=\"next\" onclick=\"nextSlide()\">></div>\
-        <button class=\"info\" id=\"close\" onclick=\"closeTutorial()\">x</button>\
-    ",
-    "\
-        <div role=\"button\" class=\"change\" id=\"back\" onclick=\"lastSlide()\"><</div>\
-        <div id=\"tortPanels\">\
-            <div id=\"tutImage2\" class=\"tutImage\"></div>\
-            <div id=\"cap\">\
-                <p>Basic Strategy:</p>\
-                <em><ul id=\"tips\">\
-                <li>Approach islands and corners first</li>\
-                <li>Look for number squares that only touch the same amount of bushes</li>\
-                <li>Right-Click on a bush to flag it as a ninja square</li>\
-                <li>With ninja squares marked, you can deduce which squares are safe to clear</li>\
-                </ul></em>\
             </div>\
         </div>\
         <div role=\"button\" class=\"change\" id=\"next\" onclick=\"nextSlide()\">></div>\
@@ -499,6 +509,21 @@ const showTutorial = () => {
     tut.style.display = "flex";
     //-accept or spacebar progression\
     document.addEventListener("keydown", tutorialNavigator)
+
+    // Swipeable navigation of tutorial for touchscreens/mobile
+    let touchstartX = 0
+    let touchendX = 0
+    function checkDirection() {
+        if (touchendX < touchstartX) nextSlide()
+        if (touchendX > touchstartX) lastSlide()
+    }
+    document.addEventListener('touchstart', e => {
+        touchstartX = e.changedTouches[0].screenX
+    })
+    document.addEventListener('touchend', e => {
+        touchendX = e.changedTouches[0].screenX
+        checkDirection()
+    })
 }
 
 // Keystrokes for tutorial navigation
@@ -508,18 +533,21 @@ const tutorialNavigator = (e) => {
         return lastSlide()
     } else if (e.key === "Escape") {
         return closeTutorial()
-    } else if (e.key === "ArrowRight"){
+    } else if (e.key === "ArrowRight") {
         return nextSlide()
-    } else if (e.key === " "){
-        if(current == tutortSlides.length-1){
+    } else if (e.key === " ") {
+        if (current == tutortSlides.length - 1) {
             return closeTutorial()
         }
         return nextSlide()
     }
 }
+
+
+
 //forward or close tutorial
 const nextSlide = () => {
-    if (current == tutortSlides.length-1){
+    if (current == tutortSlides.length - 1) {
         closeTutorial()
     } else {
         current++;
@@ -528,7 +556,7 @@ const nextSlide = () => {
 }
 //backwards or close tutorial
 const lastSlide = () => {
-    if (current == 0){
+    if (current == 0) {
         closeTutorial()
     } else {
         current--;

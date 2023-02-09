@@ -73,7 +73,7 @@ body {
 }
 
 .shuriken {
-    background-image: url('https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/star.png');
+    background-image: url('./assets/star.png');
     background-size: contain;
 }
 
@@ -96,21 +96,20 @@ body {
 #instr {
     display: none;
     flex-direction: column;
-    line-height: 1.5em;
-    color: rgb(105, 182, 244);
-    background-color: #1B3B2C;
+    line-height: 1.25em;
+    color: #1D3028;
+    background-color: #2B7D9B;
     width: fit-content;
     height: fit-content;
     width: 70vw;
-    position: absolute;
-    top: -18px;
-    left: 15vw;
-    margin: 20px auto;
+    position: relative;
+    top: -420px;
+    margin: auto;
     z-index: 1;
 }
 #instr ul li,
 #instr p {
-    font-size: .8em;
+    font-size: .7em;
     margin-bottom: .5em;
     line-height: 2em;
 }
@@ -158,7 +157,7 @@ h3 {
 #header .info {
     position: absolute;
     top: 15px;
-    left: 320px;
+    left: 280px;
     font-size: 150%;
 }
 .info {
@@ -279,6 +278,9 @@ ul li {
         -ms-transition: all 0.4s ease-in-out; 
         -o-transition: all 0.4s ease-in-out; 
         transition: all 0.4s ease-in-out;
+    }
+    #header .info {
+        left: 330px;
     }
 }
 #tortPanels {
