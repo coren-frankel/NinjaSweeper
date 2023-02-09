@@ -468,7 +468,7 @@ tutortSlides = [
             <div id=\"cap\">\
                 <p><em>Vague Counters</em></p>\
                 <p>No minesweeper game is complete without mysterious number boxes outside of the grid</p>\
-                <p>The left shows how many shuriken are applied minus the total number of hidden ninja</p>\
+                <p>The left shows how many shuriken are applied, minus the total number of hidden ninja</p>\
                 <p>The right marks the remaining safe spaces to clear, 0 marking a game win</p>\
             </div>\
         </div>\
