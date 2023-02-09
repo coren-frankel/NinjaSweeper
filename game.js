@@ -332,8 +332,8 @@ let showScore = () => {
     let ratio = horde - shuri
     // Display leftover spaces to clear and difference of shuriken applied to ninja hiding
     cnt.innerHTML = `
-        <div class="numbers">${leftover}</div>
-        <div class="numbers">${ratio}</div>
+    <div class="numbers">${ratio}</div>
+    <div class="numbers">${leftover}</div>
     `
     
 }
@@ -397,7 +397,7 @@ const showInstructions = () => {
             <li class=\"sub\">Squares with shuriken placed on them are unclickable</li>\
             <li class=\"sub\">Right-click (long press) again to remove the shuriken</li>\
             </ul>\
-            <li id=\"numbs\"><span>Numbers on a square indicate how many ninjas surround it.</span></li>\
+            <li id=\"numbs\"><span>Numbers on a square indicate how many ninjas surround it</span></li>\
             <li>Use the numbers to deduce and uncover all the unoccupied squares to win!</li>\
         </ul><br><hr>\
         <p>For a more in depth tutorial, find the <span class=\"info\">i</span>.</p>\
@@ -421,10 +421,23 @@ tutortSlides = [
         <div id=\"tortPanels\">\
             <div id=\"tutImage1\" class=\"tutImage\"></div>\
             <div id=\"cap\">\
-            <p><em>Click anywhere!</em></p>\
-            <p>The 1st move is always blind luck...</p>\
-            <p>Not every click will reveal enough to use against the ninja.</p>\
-            <p>Blank spaces are safe, numbers indicate how many ninjas touch that square adjacently, and you'll know when you've clicked a ninja. It happens.</p>\
+                <p><em>Click anywhere!</em></p>\
+                <p>The 1st move is always blind luck...</p>\
+                <p>Not every click will reveal enough to use against the ninja.</p>\
+                <p>Blank spaces are safe, numbers indicate how many ninjas touch that square adjacently, and you'll know when you've clicked a ninja. It happens.</p>\
+            </div>\
+        </div>\
+        <div role=\"button\" class=\"change\" id=\"next\" onclick=\"nextSlide()\">></div>\
+        <button class=\"info\" id=\"close\" onclick=\"closeTutorial()\">x</button>\
+    ",
+    "\
+        <div role=\"button\" class=\"change\" id=\"back\" onclick=\"lastSlide()\"><</div>\
+        <div id=\"tortPanels\">\
+            <div id=\"tutImage5\" class=\"tutImage\"></div>\
+            <div id=\"cap\">\
+                <p><em>Use the countdowns that appear below the grid to keep you in check</em></p>\
+                <p>The left shows how many shuriken are applied minus the total number of hidden ninja</p>\
+                <p>The right marks the remaining safe spaces to clear, 0 marking a game win</p>\
             </div>\
         </div>\
         <div role=\"button\" class=\"change\" id=\"next\" onclick=\"nextSlide()\">></div>\
@@ -435,13 +448,13 @@ tutortSlides = [
         <div id=\"tortPanels\">\
             <div id=\"tutImage2\" class=\"tutImage\"></div>\
             <div id=\"cap\">\
-            <p>Basic Strategy:</p>\
-            <em><ul id=\"tips\">\
-            <li>Approach islands and corners first</li>\
-            <li>Look for number squares that only touch the same amount of bushes</li>\
-            <li>Right-Click on a bush to flag it as a ninja square</li>\
-            <li>With ninja squares marked, you can deduce which squares are safe to clear</li>\
-            </ul></em>\
+                <p>Basic Strategy:</p>\
+                <em><ul id=\"tips\">\
+                <li>Approach islands and corners first</li>\
+                <li>Look for number squares that only touch the same amount of bushes</li>\
+                <li>Right-Click on a bush to flag it as a ninja square</li>\
+                <li>With ninja squares marked, you can deduce which squares are safe to clear</li>\
+                </ul></em>\
             </div>\
         </div>\
         <div role=\"button\" class=\"change\" id=\"next\" onclick=\"nextSlide()\">></div>\
@@ -452,10 +465,10 @@ tutortSlides = [
         <div id=\"tortPanels\">\
             <div id=\"tutImage3\" class=\"tutImage\"></div>\
             <div id=\"cap\">\
-            <p>Pitfalls: Hubris</p>\
-            <p><em>Trust the numbers!</em></p>\
-            <p>If you flag a square that isn't hiding a ninja, it's up to you to correct it and clear it to win the game.</p>\
-            <p><em>Remove a shuriken with another right-click (long-press).</em></p>\
+                <p>Pitfalls: Hubris</p>\
+                <p><em>Trust the numbers!</em></p>\
+                <p>If you flag a square that isn't hiding a ninja, it's up to you to correct it and clear it to win the game.</p>\
+                <p><em>Remove a shuriken with another right-click (long-press).</em></p>\
             </div>\
         </div>\
         <div role=\"button\" class=\"change\" id=\"next\" onclick=\"nextSlide()\">></div>\

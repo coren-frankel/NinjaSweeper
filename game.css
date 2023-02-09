@@ -1,26 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-/* Tutorial screen size format changes */
-@media screen and (min-width: 480px) {
-    #github:hover {
-        font-size: 1em;
-        -webkit-transition: all 0.4s ease-in-out; 
-        -moz-transition: all 0.4s ease-in-out; 
-        -ms-transition: all 0.4s ease-in-out; 
-        -o-transition: all 0.4s ease-in-out; 
-        transition: all 0.4s ease-in-out;
-    }
-}
-@media screen and (max-width: 890px) {
-    div .change {
-        top: 290px;
-    }
-}
-@media screen and (min-width: 890px) {
-    #tortPanels {
-        display: flex;
-    }
-}
 * {
     margin: 0;
     padding: 0;
@@ -51,10 +30,10 @@ body {
     align-items: center;
     justify-content: space-between;
     width: 310px;
-    height: 310px;
+    height: 311px;
     position: relative;
     background-color: rgba(0,0,0,.6);
-    top: -439px;
+    top: -430px;
     font-size: 120%;
     color: red;
 }
@@ -136,7 +115,7 @@ body {
     line-height: 2em;
 }
 #github:hover {
-    font-size: 2em;
+    font-size: 100%;
     -webkit-transition: all 0.4s ease-in-out; 
     -moz-transition: all 0.4s ease-in-out; 
     -ms-transition: all 0.4s ease-in-out; 
@@ -154,7 +133,7 @@ body {
     margin: auto;
 }
 #cred {
-    font-size: 7px;
+    font-size: 6px;
 }
 a {
     background-color: black;
@@ -199,7 +178,6 @@ ul li {
     margin-left: 4em;
     font-size: .6em;
 }
-
 #ex {
     display: inline-flex;
     justify-content: center;
@@ -210,7 +188,7 @@ ul li {
     line-height: 2em;
 }
 .tutImage{
-    width: 320px;
+    width: 321px;
     height: 320px;
 }
 #tutImage1{
@@ -225,6 +203,10 @@ ul li {
 #tutImage4{
     background-image: url("https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/roshambo.gif");
 }
+#tutImage5{
+    background: url(/assets/countdowns.gif);
+    background-size: cover;
+}
 .showTuto {
     display: flex;
 }
@@ -232,7 +214,7 @@ ul li {
     display: flex;
     justify-content: center;
     position: relative;
-    top: -320px;
+    top: -430px;
     left: 18px;
 }
 #tips {
@@ -250,7 +232,6 @@ ul li {
     height: 300px;
     align-items: center;
     justify-content: space-around;
-    overflow: auto;
 }
 #close {
     position: relative;
@@ -260,7 +241,6 @@ ul li {
     font-size: 500%;
     font-weight: 900;
     color: chartreuse;
-    height: 1em;
     width: fit-content;
     text-stroke: 2px navy;
     -webkit-text-stroke: 2px navy;
@@ -277,8 +257,10 @@ ul li {
 }
 #countdown {
     display: flex;
+    height: 1.5em;
     width: 320px;
     justify-content: space-between;
+    align-items: center;
     margin: auto;
     padding: 10px;
 }
@@ -287,4 +269,37 @@ ul li {
     background-color: rgba(0,0,0,.7);
     line-height: 1.5em;
     padding: 1%;
+}
+/* screen width over 700px will enlarge my name more */
+@media screen and (min-width: 700px) {
+    #github:hover {
+        font-size: 200%;
+        -webkit-transition: all 0.4s ease-in-out; 
+        -moz-transition: all 0.4s ease-in-out; 
+        -ms-transition: all 0.4s ease-in-out; 
+        -o-transition: all 0.4s ease-in-out; 
+        transition: all 0.4s ease-in-out;
+    }
+}
+#tortPanels {
+    display: flex;
+}
+/* Tutorial screen size format changes */
+@media screen and (max-width: 890px) {
+    #tortPanels {
+        display: block;
+    }
+    #close {
+        position: relative;
+        left: -70px;
+    }
+    .change {
+        top: 310px;
+        font-size: 200%;
+        font-weight: 900;
+        text-stroke: 1px navy;
+        -webkit-text-stroke: 1px navy;
+        -moz-text-stroke: 1px navy;
+    }
+    
 }
