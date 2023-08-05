@@ -86,6 +86,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    text-align: center;
     text-stroke: 1px black;
     -ms-text-stroke: 1px black;
     -webkit-text-stroke: 1px black;
