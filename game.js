@@ -46,11 +46,8 @@ function render(theDojo) {
 function clearBush(i, j, element) {
   // i and j are the indexes to check theDojo 2D Array values
   // element refers to the dom element selected
-  // If a shuriken is currently applied
-  if (element.classList.contains("shuriken")) {
-    // don't allow clearBush() to continue
-    return null;
-  }
+  // If a shuriken is currently applied -- don't allow clearBush() to continue
+  if (element.classList.contains("shuriken")) return null;
   // Adjacent ninjas count initiates at 0
   let adjacent = 0;
   if (theDojo[i][j] === false) {
@@ -185,16 +182,15 @@ function clearBush(i, j, element) {
     // When 90 safe squares have been uncovered
     if (uncovered.length == 90) {
       //Win message! Game OVER!
-      console.log("Congratulations! You're safe, for now...");
+      console.log("Congratulations! You're safe... for now.");
       endgame.style.display = "flex";
-      endgame.innerHTML = (
+      endgame.innerHTML = 
         `<div class="bye">
-                    <h3>Success!</h3>
-                    <p>You evaded the ninja, and will live to see another day!</p>
-                    <p>You find a discarded sandwich and chomp cheerfully into the sunset!</p>
-                    <p>Vaya con Dios, soldier...</p>
-                <div>`
-      );
+          <h3>Success!</h3>
+          <p>You evaded the ninja, and will live to see another day!</p>
+          <p>You find a discarded sandwich and chomp cheerfully into the sunset!</p>
+          <p>Vaya con Dios, soldier...</p>
+        <div>`;
       endgame.style.color = "chartreuse";
       endgame.style.textStroke = "violet";
       play("chomp.wav");
@@ -226,23 +222,23 @@ function clearBush(i, j, element) {
     // Random 'loser' message from list of 3
     const loser = [
       `<div class="bye">
-                <p>You come up behind a ninja eating a sandwich.</p>
-                <p>A twig snaps beneath your toes.</p>
-                <p>The sandwich falls to the ground.</p>
-                <h3>Game Over!</h3>
-            </div>`,
+        <p>You come up behind a ninja eating a sandwich.</p>
+        <p>A twig snaps beneath your toes.</p>
+        <p>The sandwich falls to the ground.</p>
+        <h3>Game Over!</h3>
+      </div>`,
       `<div class="bye">
-                <p>The breeze changes direction.</p>
-                <p>They've caught your scent.</p>
-                <p>The trees around you rustle as the ninja swarm!</p>
-                <h3>Game Over!</h3>
-            <div>`,
+        <p>The breeze changes direction.</p>
+        <p>They've caught your scent.</p>
+        <p>The trees around you rustle as the ninja swarm!</p>
+        <h3>Game Over!</h3>
+      <div>`,
       `<div class="bye">
-                <p>**Achoo!**</p>
-                <p>Did that bush just sneeze?</p>
-                <p>The ninja assasins hone in before you can flee!</p>
-                <h3>Game Over!</h3>
-            <div>`
+        <p>**Achoo!**</p>
+        <p>Did that bush just sneeze?</p>
+        <p>The ninja assasins hone in before you can flee!</p>
+        <h3>Game Over!</h3>
+      <div>`
     ];
     endgame.innerHTML = (loser[deliver]);
     // Add Restart button to the end of the message
@@ -252,14 +248,9 @@ function clearBush(i, j, element) {
 }
 // Flag or Shuriken fn: right-click to toggle a shuriken on a square
 function flag(el) {
-  // If it's a bush
-  if (el.classList.contains("bush")) {
-    // Allow Shuriken-flag
-    el.classList.toggle("shuriken");
-  }
-  if (el.classList.contains("shuriken")) {
-    play("shurikenThrow.mp3");
-  }
+  // If it's a bush -- Allow Shuriken-flag
+  if (el.classList.contains("bush")) el.classList.toggle("shuriken");
+  if (el.classList.contains("shuriken")) play("shurikenThrow.mp3");
   showScore();
   return false;
 }
@@ -273,9 +264,7 @@ let showScore = () => {
   for (let p = 0; p < 10; p++) {
     for (let q = 0; q < 10; q++) {
       let nin = document.querySelector(`#sq-${p}${q}`)
-      if (nin.classList.contains('shuriken')) {
-        shuri++;
-      }
+      if (nin.classList.contains('shuriken')) shuri++;
     }
   }
   let ratio = horde - shuri;
