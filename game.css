@@ -1,314 +1,371 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 * {
-    margin: 0;
-    padding: 0;
-    font-family: 'Press Start 2P', monospace;
+  margin: 0;
+  padding: 0;
+  font-family: 'Press Start 2P', monospace;
 }
+
 body {
-    background-color: slategrey;
-    background-image: url('https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/forest.jpg');
-    background-size: fill;
-}   
+  background-color: slategrey;
+  background-image: url('https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/forest.jpg');
+  background-size: fill;
+}
+
 #the-dojo {
-    width: 320px;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
+  width: 320px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
 }
+
 #title {
-    background-color: rgba(0,0,0,.7);
-    color: chartreuse;
-    -webkit-text-stroke: 1px black;
-    -moz-text-stroke: 1px black;
+  background-color: rgba(0, 0, 0, .7);
+  color: chartreuse;
+  -webkit-text-stroke: 1px black;
+  -moz-text-stroke: 1px black;
 }
+
 .gameover {
-    padding: 5px;
-    margin: auto;
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    width: 310px;
-    height: 311px;
-    position: relative;
-    background-color: rgba(0,0,0,.6);
-    top: -430px;
-    font-size: 120%;
-    color: red;
+  padding: 5px;
+  margin: auto;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 310px;
+  height: 311px;
+  position: relative;
+  background-color: rgba(0, 0, 0, .6);
+  top: -430px;
+  font-size: 120%;
+  color: red;
 }
+
 .tatami {
-    background-color: forestgreen;
-    height: 32px;
-    width: 32px;
-    border: 1px solid saddlebrown;
-    border-right: 1px solid saddlebrown;
-    border-bottom: 1px solid saddlebrown;
-    color:black;
-    text-stroke: 1% white;
-    -webkit-text-stroke: 1% white;
-    -moz-text-stroke: 1% white;
+  background-color: forestgreen;
+  height: 32px;
+  width: 32px;
+  border: 1px solid saddlebrown;
+  border-right: 1px solid saddlebrown;
+  border-bottom: 1px solid saddlebrown;
+  color: black;
+  text-stroke: 1% white;
+  -webkit-text-stroke: 1% white;
+  -moz-text-stroke: 1% white;
 }
+
 .bush {
-    background-image: url('https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/bush.png');
-    background-size: contain;
+  background-image: url('https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/bush.png');
+  background-size: contain;
 }
+
 .ninja {
-    background-image: url("https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/ninja.png");
-    background-size: contain;
-}    
+  background-image: url("https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/ninja.png");
+  background-size: contain;
+}
+
 .ninja1 {
-    background-image: url("https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/ninja(1).png");
-    background-size: contain;
-}    
+  background-image: url("https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/ninja(1).png");
+  background-size: contain;
+}
+
 .ninja2 {
-    background-image: url("https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/ninja(2).png");
-    background-size: contain;
-}    
+  background-image: url("https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/ninja(2).png");
+  background-size: contain;
+}
+
 .tatami:active {
-    border: 2px solid #999;
-    border-right: 2px solid #ccc;
-    border-bottom: 2px solid #ccc;
-    background-color: white;
+  border: 2px solid #999;
+  border-right: 2px solid #ccc;
+  border-bottom: 2px solid #ccc;
+  background-color: white;
 }
+
 .shuriken {
-    background-image: url('https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/star.png');
-    background-size: contain;
+  background-image: url('https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/star.png');
+  background-size: contain;
 }
+
 #restart {
-    width: 60%;
-    height: 2em;
-    border-radius: 50px;
-    background-color: black;
-    color: crimson;
+  width: 60%;
+  height: 2em;
+  border-radius: 50px;
+  background-color: black;
+  color: crimson;
 }
+
 .bye {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    text-align: center;
-    text-stroke: 1px black;
-    -ms-text-stroke: 1px black;
-    -webkit-text-stroke: 1px black;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  text-align: center;
+  text-stroke: 1px black;
+  -ms-text-stroke: 1px black;
+  -webkit-text-stroke: 1px black;
 }
+
 #instr {
-    display: none;
-    flex-direction: column;
-    line-height: 1.25em;
-    color: #1D3028;
-    background-color: #2B7D9B;
-    width: fit-content;
-    height: fit-content;
-    width: 70vw;
-    position: relative;
-    top: -420px;
-    margin: auto;
-    z-index: 1;
+  display: none;
+  flex-direction: column;
+  line-height: 1.25em;
+  color: #1d3028;
+  background-color: #2b7d9b;
+  width: fit-content;
+  height: fit-content;
+  width: 70vw;
+  position: relative;
+  top: -420px;
+  margin: auto;
+  z-index: 1;
 }
+
 #instr ul li,
 #instr p {
-    font-size: .7em;
-    margin-bottom: .5em;
-    line-height: 2em;
+  font-size: .7em;
+  margin-bottom: .5em;
+  line-height: 2em;
 }
+
 #github:hover {
-    font-size: 100%;
-    -webkit-transition: all 0.4s ease-in-out; 
-    -moz-transition: all 0.4s ease-in-out; 
-    -ms-transition: all 0.4s ease-in-out; 
-    -o-transition: all 0.4s ease-in-out; 
-    transition: all 0.4s ease-in-out;
+  font-size: 100%;
+  -webkit-transition: all 0.8s ease-in-out;
+  -moz-transition: all 0.8s ease-in-out;
+  -ms-transition: all 0.8s ease-in-out;
+  -o-transition: all 0.8s ease-in-out;
+  transition: all 0.8s ease-in-out;
 }
+
+#github:hover > a,
+#github > a {
+  padding-top: .1em;
+}
+
 #github {
-    padding: 25px;
+  padding: 30px;
 }
+
 #github,
-#cred{
-    font-size: .5em;
-    display: flex;
-    width: fit-content;
-    margin: auto;
-}
 #cred {
-    font-size: 6px;
+  font-size: .5em;
+  display: flex;
+  width: fit-content;
+  margin: auto;
 }
+
+#cred {
+  font-size: 6px;
+}
+
 a {
-    background-color: black;
-    text-decoration: none;
-    color: cyan;
+  background-color: black;
+  text-decoration: none;
+  color: cyan;
 }
+
 p > em {
-    text-align: center;
+  text-align: center;
 }
+
 h3 {
-    margin: auto;
-    text-align: center;
+  margin: auto;
+  text-align: center;
 }
+
 #header {
-    display: flex;
-    position: relative;
-    flex-direction: column;
-    width: 320px;
-    margin: 20px auto;
-    text-align: center;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  width: 320px;
+  margin: 20px auto;
+  text-align: center;
 }
+
 #header .info {
-    position: absolute;
-    top: 15px;
-    left: 280px;
-    font-size: 150%;
+  position: absolute;
+  top: 15px;
+  left: 280px;
+  font-size: 150%;
 }
+
 .info {
-    color: white;
-    background-color: black;
-    width: fit-content;
-    height: fit-content;
-    border-radius: 50px;
-    padding:5px;
+  color: white;
+  background-color: black;
+  width: fit-content;
+  height: fit-content;
+  border-radius: 50px;
+  padding: 5px;
 }
+
 ul li {
-    list-style-type: square;
-    line-height: 1.5em;
+  list-style-type: square;
+  line-height: 1.5em;
 }
+
 .sub {
-    list-style-type: disc;
-    margin-left: 4em;
-    font-size: .6em;
+  list-style-type: disc;
+  margin-left: 4em;
+  font-size: .6em;
 }
+
 #ex {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
 }
-#numbs, #numbs span{
-    line-height: 2em;
+
+#numbs,
+#numbs span {
+  line-height: 2em;
 }
-.tutImage{
-    width: 321px;
-    height: 320px;
+
+.tutImage {
+  width: 321px;
+  height: 320px;
 }
-#tutImage1{
-    background-image: url("https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/blindLuck.gif");
+
+#tutImage1 {
+  background-image: url("https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/blindLuck.gif");
 }
-#tutImage2{
-    background-image: url("https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/islandsCorners.gif");
+
+#tutImage2 {
+  background-image: url("https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/islandsCorners.gif");
 }
-#tutImage3{
-    background-image: url("https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/willynilly.gif");
+
+#tutImage3 {
+  background-image: url("https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/willynilly.gif");
 }
-#tutImage4{
-    background-image: url("https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/roshambo.gif");
+
+#tutImage4 {
+  background-image: url("https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/roshambo.gif");
 }
-#tutImage5{
-    background: url("https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/countdowns.gif");
-    background-size: cover;
+
+#tutImage5 {
+  background: url("https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/countdowns.gif");
+  background-size: cover;
 }
+
 .showTuto {
-    display: flex;
+  display: flex;
 }
+
 #tutorialWindow {
-    display: flex;
-    justify-content: center;
-    position: relative;
-    top: -429px;
-    left: 18px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: -429px;
+  left: 18px;
 }
+
 #tips {
-    padding-left: 2em;
+  padding-left: 2em;
 }
+
 #cap {
-    font-size: 80%;
-    background-color: navy;
-    color: chartreuse;
-    padding: 10px;
-    line-height: 1.5em;
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-    height: 300px;
-    align-items: center;
-    justify-content: space-around;
+  font-size: 80%;
+  background-color: navy;
+  color: chartreuse;
+  padding: 10px;
+  line-height: 1.5em;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  height: 300px;
+  align-items: center;
+  justify-content: space-around;
 }
+
 #close {
-    position: relative;
-    left: -117px;
+  position: relative;
+  left: -117px;
 }
+
 .change {
-    font-size: 500%;
-    font-weight: 900;
-    color: chartreuse;
-    width: fit-content;
-    text-stroke: 2px navy;
-    -webkit-text-stroke: 2px navy;
-    -moz-text-stroke: 2px navy;
-    position: relative;
-    top: 120px;
+  font-size: 500%;
+  font-weight: 900;
+  color: chartreuse;
+  width: fit-content;
+  text-stroke: 2px navy;
+  -webkit-text-stroke: 2px navy;
+  -moz-text-stroke: 2px navy;
+  position: relative;
+  top: 120px;
 }
+
 #next {
-    padding-left: 10px;
+  padding-left: 10px;
 }
+
 .sample {
-    height: 2em;
-    width: 2em;
+  height: 2em;
+  width: 2em;
 }
+
 #countdown {
-    display: flex;
-    height: 1.5em;
-    width: 320px;
-    justify-content: space-between;
-    align-items: center;
-    margin: auto;
-    padding: 10px;
+  display: flex;
+  height: 1.5em;
+  width: 320px;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+  padding: 10px;
 }
+
 .numbers {
-    color: gold;
-    background-color: rgba(0,0,0,.7);
-    line-height: 1.5em;
-    padding: 1%;
+  color: gold;
+  background-color: rgba(0, 0, 0, .7);
+  line-height: 1.5em;
+  padding: 1%;
 }
 /* screen width over 700px will enlarge my name more */
 @media screen and (min-width: 700px) {
-    #github:hover {
-        font-size: 200%;
-        -webkit-transition: all 0.4s ease-in-out; 
-        -moz-transition: all 0.4s ease-in-out; 
-        -ms-transition: all 0.4s ease-in-out; 
-        -o-transition: all 0.4s ease-in-out; 
-        transition: all 0.4s ease-in-out;
-    }
-    #header .info {
-        left: 330px;
-    }
+  #github:hover {
+    font-size: 200%;
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -ms-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+  }
+
+  #header .info {
+    left: 330px;
+  }
 }
+
 #tortPanels {
-    display: flex;
+  display: flex;
 }
 /* Tutorial screen size format changes */
 @media screen and (max-width: 890px) {
-    #tortPanels {
-        display: block;
-    }
-    #close {
-        position: relative;
-        left: -70px;
-    }
-    .change {
-        top: 310px;
-        font-size: 200%;
-        font-weight: 900;
-        text-stroke: 1px navy;
-        -webkit-text-stroke: 1px navy;
-        -moz-text-stroke: 1px navy;
-    }
-    #next {
-        position: relative;
-        top: 330px;
-        left: -40px;
-    }
-    #back {
-        position: relative;
-        top: 330px;
-        left: 35px;
-    }
+  #tortPanels {
+    display: block;
+  }
+
+  #close {
+    position: relative;
+    left: -70px;
+  }
+
+  .change {
+    top: 310px;
+    font-size: 200%;
+    font-weight: 900;
+    text-stroke: 1px navy;
+    -webkit-text-stroke: 1px navy;
+    -moz-text-stroke: 1px navy;
+  }
+
+  #next {
+    position: relative;
+    top: 330px;
+    left: -40px;
+  }
+
+  #back {
+    position: relative;
+    top: 330px;
+    left: 35px;
+  }
 }
