@@ -208,7 +208,7 @@ function clearBush(i, j, element) {
           let rand = Math.floor(Math.random() * 3);
           let nin = document.querySelector(`#sq-${p}${q}`);
           // Apply randomized ninja to square
-          nin.classList.remove('bush');
+          nin.classList.remove("bush");
           nin.classList.add(`ninja${ninjas[rand]}`);
           nin.style.backgroundColor = "crimson";
         }
@@ -259,12 +259,12 @@ dojoDiv.innerHTML = render(theDojo);
 // & the difference of shuriken applied to ninja hiding
 let showScore = () => {
   let leftover = rows * cols - horde - uncovered.length;
-  let cntdwn = document.querySelector('#countdown');
+  let cntdwn = document.querySelector("#countdown");
   let shuri = 0;
   for (let p = 0; p < 10; p++) {
     for (let q = 0; q < 10; q++) {
       let nin = document.querySelector(`#sq-${p}${q}`)
-      if (nin.classList.contains('shuriken')) shuri++;
+      if (nin.classList.contains("shuriken")) shuri++;
     }
   }
   let ratio = horde - shuri;
@@ -448,8 +448,8 @@ const showTutorial = () => {
     if (touchendX < touchstartX) nextSlide();
     if (touchendX > touchstartX) lastSlide();
   }
-  document.addEventListener('touchstart', e => touchstartX = e.changedTouches[0].screenX)
-  document.addEventListener('touchend', e => {
+  document.addEventListener("touchstart", e => touchstartX = e.changedTouches[0].screenX)
+  document.addEventListener("touchend", e => {
     touchendX = e.changedTouches[0].screenX;
     checkDirection();
   })
