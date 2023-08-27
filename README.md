@@ -1,6 +1,7 @@
 # NinjaSweeper
 
->This is a build upon an algorithm exercise from the Coding Dojo's web fundamental course & an ode to the classic Minesweeper game made with vanilla HTML, CSS, & Javascript. Please enjoy evading the ninja's who seek to corner and assasinate you as you dig through the bush. Live Demo [_here_](https://coren-frankel.github.io/NinjaSweeper/)
+>This is a build upon an algorithm exercise from the Coding Dojo's web fundamental course & an ode to the classic Minesweeper game made with vanilla HTML, CSS, & Javascript. Please enjoy evading the ninja's who seek to corner and assasinate you as you dig through the bush. 
+>>Live Demo [_here_](https://coren-frankel.github.io/NinjaSweeper/)
 
 >Things I'd like to add in the future:
 * Animation of leaves or bush or ninja upon clicking on a ninja square
