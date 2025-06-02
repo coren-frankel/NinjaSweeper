@@ -321,30 +321,8 @@ const play = (mp3) => {
 const showInstructions = () => {
   instr = document.querySelector("#instr");
   title = document.querySelector("#title");
-  const displayInstructions = () => {
-    instr.style.display = "flex";
-    instr.style.padding = "30px 100px";
-    instr.innerHTML = `
-      <h3>Welcome to Ninja Sweeper!</h3>
-      <hr>
-      <p>How to Play:</p> 
-      <ul>
-        <li>Click (press) the lil bushsters <img src="https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/bush.png" alt="bushster" class="sample"> to clear the board, avoiding ninja <img src="https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/ninja.png" alt="bushster" class="sample"></li>
-        <li>Right-click (long press) on bushels to place shuriken <img src="https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/star.png" alt="shuriken" class="sample"> or "flags" on suspected ninja locations</li>
-        <ul>
-        <li class="sub">Squares with shuriken placed on them are unclickable</li>
-        <li class="sub">Right-click (long press) again to remove the shuriken</li>
-        </ul>
-        <li id="numbs"><span>Numbers on a square indicate how many ninjas surround it</span></li>
-        <li>Use the numbers to deduce and uncover all the unoccupied squares to win!</li>
-      </ul><br>
-      <hr>
-      <p>For a more in depth tutorial, find the <span class="info">i</span>.</p>
-      <h3><em>Good Luck!</em></h3>`;
-  }
-  const disappear = () => {
-    instr.style.display = "none";
-  }
+  const displayInstructions = () => instr.style.display = "flex";
+  const disappear = () => instr.style.display = "none";
   //On hover, display
   title.addEventListener("mouseover", displayInstructions);
   title.addEventListener("touchstart", displayInstructions);
@@ -358,78 +336,38 @@ showInstructions();
 // Tutorial slide array
 tutortSlides = [
   `
-    <div role="button" class="change" id="back" title="close tutorial" onclick="lastSlide()"><</div>
-    <div id="tortPanels">
-      <div id="tutImage1" class="tutImage"></div>
-      <div id="cap">
-        <p><em>Click anywhere!</em></p>
-        <p>The 1st move is always blind luck...</p>
-        <p>Not every click will reveal enough to use against the ninja.</p>
-        <p>Blank spaces are safe, numbers indicate how many ninjas touch that square adjacently, and you'll know when you've clicked a ninja. It happens.</p>
-      </div>
-    </div>
-    <div role="button" class="change" id="next" title="next" onclick="nextSlide()">></div>
-    <button class="info" id="close" onclick="closeTutorial()">x</button>
+    <p><em>Click anywhere!</em></p>
+    <p>The 1st move is always blind luck...</p>
+    <p>Not every click will reveal enough to use against the ninja.</p>
+    <p>Blank spaces are safe, numbers indicate how many ninjas touch that square adjacently, and you'll know when you've clicked a ninja. It happens.</p>
   `,
   `
-    <div role="button" class="change" id="back" title="back" onclick="lastSlide()"><</div>
-    <div id="tortPanels">
-      <div id="tutImage2" class="tutImage"></div>
-      <div id="cap">
-        <p>Basic Strategy:</p>
-        <em><ul id="tips">
-        <li>Approach islands and corners first</li>
-        <li>Look for number squares that only touch the same amount of bushes</li>
-        <li>Right-Click on a bush to flag it as a ninja square</li>
-        <li>With ninja squares marked, you can deduce which squares are safe to clear</li>
-        </ul></em>
-      </div>
-    </div>
-    <div role="button" class="change" id="next" title="next" onclick="nextSlide()">></div>
-    <button class="info" id="close" onclick="closeTutorial()">x</button>
+    <p>Basic Strategy:</p>
+    <em><ul id="tips">
+    <li>Approach islands and corners first</li>
+    <li>Look for number squares that only touch the same amount of bushes</li>
+    <li>Right-Click on a bush to flag it as a ninja square</li>
+    <li>With ninja squares marked, you can deduce which squares are safe to clear</li>
+    </ul></em>
   `,
   `
-    <div role="button" class="change" id="back" title="back" onclick="lastSlide()"><</div>
-    <div id="tortPanels">
-      <div id="tutImage5" class="tutImage"></div>
-      <div id="cap">
-        <p><em>Vague Counters</em></p>
-        <p>No minesweeper game is complete without mysterious number boxes outside of the grid</p>
-        <p>The left shows how many shuriken are applied, minus the total number of hidden ninja</p>
-        <p>The right marks the remaining safe spaces to clear, 0 marking a game win</p>
-      </div>
-    </div>
-    <div role="button" class="change" id="next" title="next" onclick="nextSlide()">></div>
-    <button class="info" id="close" onclick="closeTutorial()">x</button>
+    <p><em>Vague Counters</em></p>
+    <p>No minesweeper game is complete without mysterious number boxes outside of the grid</p>
+    <p>The left shows how many shuriken are applied, minus the total number of hidden ninja</p>
+    <p>The right marks the remaining safe spaces to clear, 0 marking a game win</p>
   `,
   `
-    <div role="button" class="change" id="back" title="back" onclick="lastSlide()"><</div>
-    <div id="tortPanels">
-      <div id="tutImage3" class="tutImage"></div>
-      <div id="cap">
-        <p>Pitfalls: Hubris</p>
-        <p><em>Trust the numbers!</em></p>
-        <p>If you flag a square that isn't hiding a ninja, it's up to you to correct it and clear it to win the game.</p>
-        <p><em>Remove a shuriken with another right-click (long-press).</em></p>
-      </div>
-    </div>
-    <div role="button" class="change" id="next" title="next" onclick="nextSlide()">></div>
-    <button class="info" id="close" onclick="closeTutorial()">x</button>
+    <p>Pitfalls: Hubris</p>
+    <p><em>Trust the numbers!</em></p>
+    <p>If you flag a square that isn't hiding a ninja, it's up to you to correct it and clear it to win the game.</p>
+    <p><em>Remove a shuriken with another right-click (long-press).</em></p>
   `,
   `
-    <div role="button" class="change" id="back" title="back" onclick="lastSlide()"><</div>
-    <div id="tortPanels">
-      <div id="tutImage4" class="tutImage"></div>
-      <div id="cap">
-        <p>Pitfalls: Chance</p>
-        <p><em>Luck may end the game</em></p>
-        <p>Chance might place a set of bush that can't be cleared with deduction alone.</p>
-        <p><em>Deal with it</em></p>
-        <p>Sometimes you'll need to leave it to chance, pick one and go for it.</p>
-      </div>
-    </div>
-    <div role="button" class="change" id="next" title="next" onclick="nextSlide()">></div>
-    <button class="info" id="close" onclick="closeTutorial()">x</button>
+    <p>Pitfalls: Chance</p>
+    <p><em>Luck may end the game</em></p>
+    <p>Chance might place a set of bush that can't be cleared with deduction alone.</p>
+    <p><em>Deal with it</em></p>
+    <p>Sometimes you'll need to leave it to chance, pick one and go for it.</p>
   `
 ];
 // Tutorial slide index
@@ -437,9 +375,18 @@ let current = 0;
 tut = document.querySelector("#tutorialWindow");
 // Display tutorial over game and initiate keyboard navigation
 const showTutorial = () => {
-  tut.innerHTML = tutortSlides[current];
+  let tutImage = document.querySelector('.tutImage');
+  tutImage.id = `tutImage${current + 1}`; // Set the image id based on the current slide
+  const back = document.querySelector("#back");
+  back.title = current === 0 ? "close tutorial" : "back";
+  back.onclick = current === 0 ? closeTutorial : lastSlide;
+  const next = document.querySelector("#next");
+  next.title = current === tutortSlides.length - 1 ? "close tutorial" : "next";
+  next.onclick = current === tutortSlides.length - 1 ? closeTutorial : nextSlide;
+  const cap = document.querySelector("#cap");
+  cap.innerHTML = tutortSlides[current];
   tut.style.display = "flex";
-  //-accept or spacebar progression\
+  //-accept or spacebar progression
   document.addEventListener("keydown", tutorialNavigator);
 
   // Swipeable navigation of tutorial for touchscreens/mobile
@@ -481,6 +428,7 @@ const nextSlide = () => {
     showTutorial();
   }
 }
+
 //backwards or close tutorial
 const lastSlide = () => {
   if (current == 0) {
@@ -493,12 +441,11 @@ const lastSlide = () => {
 
 const closeTutorial = () => {
   tut.style.display = "none";
-  tut.innerHTML = "";
   current = 0;
   document.removeEventListener("keydown", tutorialNavigator);
 }
 
-// message to greet a clever developers
+// message to console when the game loads
 const style = "color:cyan;font-size:1.5rem;font-weight:bold;";
 console.log("%c" + "What's this?", style);
 console.log("%c" + "You've discovered a strange map along the edge of the bush.", style);

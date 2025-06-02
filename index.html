@@ -1,35 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Ninja-themed Minesweeper Game">
-    <meta name="keywords" content="minesweeper, game, browser game, ninja, shuriken, mine, sweep">
-    <meta name="author" content="Coren Frankel"
-    <title>NinjaSweeper</title>
-    <link rel="stylesheet" href="game.css">
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon_io/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon_io/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon_io/favicon-16x16.png">
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-    <link rel="manifest" href="/assets/favicon_io/site.webmanifest">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Ninja-themed minesweeper game created with JavaScript, CSS, and HTML. Navigate through a grid of bushes, avoiding ninjas with shurikens.">
+  <meta name="keywords" content="minesweeper, game, ninja, shuriken, mine, sweep">
+  <meta name="author" content="Coren Frankel">
+  <title>NinjaSweeper</title>
+  <link rel="stylesheet" href="game.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon_io/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon_io/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon_io/favicon-16x16.png">
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <link rel="manifest" href="/assets/favicon_io/site.webmanifest">
 </head>
+
 <body>
-    <div id="header">
-        <h1 id="title">Ninja Sweeper</h1>
-        <button class="info" onclick="showTutorial()">i</button>
+  <div id="header">
+    <h1 id="title">Ninja Sweeper</h1>
+    <button class="info" onclick="showTutorial()">i</button>
+  </div>
+  <div id="instr">
+    <h3>Welcome to Ninja Sweeper!</h3>
+    <hr>
+    <p>How to Play:</p>
+    <ul>
+      <li>Click (press) the lil bushsters <img
+          src="https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/bush.png" alt="bushster"
+          class="sample"> to clear the board, avoiding ninja <img
+          src="https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/ninja.png" alt="bushster"
+          class="sample"></li>
+      <li>Right-click (long press) on bushels to place shuriken <img
+          src="https://raw.githubusercontent.com/coren-frankel/NinjaSweeper/main/assets/star.png" alt="shuriken"
+          class="sample"> or "flags" on suspected ninja locations</li>
+      <ul>
+        <li class="sub">Squares with shuriken placed on them are unclickable</li>
+        <li class="sub">Right-click (long press) again to remove the shuriken</li>
+      </ul>
+      <li id="numbs"><span>Numbers on a square indicate how many ninjas surround it</span></li>
+      <li>Use the numbers to deduce and uncover all the unoccupied squares to win!</li>
+    </ul><br>
+    <hr>
+    <p>For a more in depth tutorial, find the <span class="info">i</span>.</p>
+    <h3><em>Good Luck!</em></h3>
+  </div>
+  <div id="the-dojo">Still loading... try refreshing the page.</div>
+  <div id="countdown"></div>
+  <div class="gameover"></div>
+  <div id="tutorialWindow">
+    <div role="button" class="change" id="back" title="close tutorial" onclick="lastSlide()">&lt;</div>
+    <div id="tortPanels">
+      <div id="tutImage1" class="tutImage"></div>
+      <div id="cap">
+        <p><em>Click anywhere!</em></p>
+        <p>The 1st move is always blind luck...</p>
+        <p>Not every click will reveal enough to use against the ninja.</p>
+        <p>Blank spaces are safe, numbers indicate how many ninjas touch that square adjacently, and you'll know when you've clicked a ninja. It happens.</p>
+      </div>
     </div>
-    <div id="the-dojo">Still loading... try refreshing the page.</div>
-    <div id="instr"></div>
-    <div id="countdown"></div>
-    <p id="github">
-        <a href="https://github.com/coren-frankel" title="Coren Frankel's Github" target="_blank" onmouseenter="wow()">Coren Frankel 2023</a>
-    </p>
-    <cite>
-        <a href="https://www.flaticon.com/free-icons/ninja" title="ninja icons" id="cred" target="_blank">Ninja & Bush icons created by Freepik - Flaticon</a>
-    </cite>
-    <div class="gameover"></div>
-    <div id="tutorialWindow"></div>
-    <script src="game.js" defer></script>
+    <div role="button" class="change" id="next" title="next" onclick="nextSlide()">></div>
+    <button class="info" id="close" onclick="closeTutorial()">x</button>
+  </div>
+  <p id="github">
+    <a href="https://github.com/coren-frankel" title="Coren Frankel's Github" target="_blank" onmouseenter="wow()">Coren
+      Frankel 2023</a>
+  </p>
+  <cite>
+    <a href="https://www.flaticon.com/free-icons/ninja" title="ninja icons" id="cred" target="_blank">Ninja & Bush icons
+      created by Freepik - Flaticon</a>
+  </cite>
+  <script src="game.js" defer></script>
 </body>
+
 </html>
