@@ -12,6 +12,9 @@ const dojoDiv = document.querySelector("#the-dojo");
 const endgame = document.querySelector(".gameover");
 // uncovered list of squares exposed
 let uncovered = [];
+// Audio Control for Parent Iframe Communication
+let isGameMuted = false;
+
 // Renders all rows of theDojo as cute lil bushes with the clearBush() function for flagging or uncovering
 function render(theDojo) {
   let result = "";
@@ -307,6 +310,38 @@ let showScore = () => {
 // }
 // changeChallenge(2)
 
+
+function setGameMuted(muted) {
+  isGameMuted = muted;
+  
+  // Control all audio elements
+  const audioElements = document.querySelectorAll('audio, video');
+  audioElements.forEach(element => {
+    element.muted = muted;
+    element.volume = muted ? 0 : 1;
+  });
+  
+  // If you have Web Audio API nodes, control them here
+  // Example: if (audioGainNode) audioGainNode.gain.value = muted ? 0 : 1;
+  
+  console.log(`Game audio ${muted ? 'MUTED' : 'UNMUTED'}`);
+  
+  // Send confirmation back to parent
+  if (window.parent !== window) {
+    window.parent.postMessage({
+      type: 'audioStateUpdate',
+      muted: muted
+    }, '*');
+  }
+}
+
+// Listen for messages from parent iframe
+window.addEventListener('message', function(event) {
+  if (event.data.type === 'audioControl') {
+    setGameMuted(event.data.muted);
+  }
+});
+
 wowList = ["wowc.mp3", "wowd.mp3", "wowf.mp3", "wowh.mp3", "wowi.mp3", "wowl.mp3", "wown.mp3", "wowq.mp3", "wowr.mp3", "wows.mp3", "wowy.mp3", "wowz.mp3"];
 const wow = () => {
   let rand = Math.floor(Math.random() * wowList.length);
@@ -315,7 +350,7 @@ const wow = () => {
 const play = (mp3) => {
   var audio = new Audio("./assets/" + mp3);
   audio.loop = false;
-  audio.play();
+  if (!isGameMuted) audio.play();
 }
 //Instructions hover on game title function:
 const showInstructions = () => {
